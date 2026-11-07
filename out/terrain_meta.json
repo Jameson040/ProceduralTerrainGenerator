@@ -1,0 +1,42 @@
+{
+  "settings": {
+    "seed": 42,
+    "world_width": 1024.0,
+    "world_depth": 1024.0,
+    "origin_x": 0.0,
+    "origin_z": 0.0,
+    "resolution": 256,
+    "height_scale": 180.0,
+    "mountain_amount": 0.55,
+    "mountain_sharpness": 1.4,
+    "hill_amount": 0.5,
+    "valley_depth": 0.45,
+    "cliff_amount": 0.6,
+    "warp_strength": 60.0,
+    "base_frequency": 0.002380952380952381,
+    "water_enabled": true,
+    "water_level": 0.2,
+    "shore_softness": 0.6,
+    "settings_version": 1
+  },
+  "metadata": {
+    "generator_version": "0.1.1",
+    "settings_version": 1,
+    "seed": 42,
+    "grid": [
+      256,
+      256
+    ],
+    "cell_size": 4.015686274509804,
+    "min_height": 21.64241600036621,
+    "max_height": 175.13221740722656,
+    "generation_time_ms": 409.41,
+    "water_cells": 1570,
+    "lakebed_min": 21.642,
+    "lakebed_max": 36.0,
+    "lakebed_mean": 30.727,
+    "max_water_depth": 14.358,
+    "water_level": 36.0
+  },
+  "water_level": 36.0
+}

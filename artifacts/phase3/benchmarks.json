@@ -1,0 +1,38 @@
+[
+  {
+    "resolution": 129,
+    "generationMs": 229,
+    "prepareMs": 31,
+    "meshMs": [
+      41,
+      17,
+      12
+    ],
+    "terrainTriangles": [
+      32768,
+      20586,
+      18792
+    ],
+    "cachedMeshMiB": 2.66,
+    "exportMs": 360,
+    "zipMiB": 3.66
+  },
+  {
+    "resolution": 257,
+    "generationMs": 649,
+    "prepareMs": 48,
+    "meshMs": [
+      71,
+      42,
+      18
+    ],
+    "terrainTriangles": [
+      131072,
+      66978,
+      53750
+    ],
+    "cachedMeshMiB": 8.93,
+    "exportMs": 1026,
+    "zipMiB": 12.61
+  }
+]

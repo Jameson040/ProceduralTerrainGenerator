@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "chunks": 16,
+  "source": [
+    129,
+    129
+  ],
+  "normalError": 0,
+  "positionError": 0,
+  "boundaryEdges": 24,
+  "riverCrossings": 16,
+  "lakeCrossings": 10,
+  "trianglesByLod": [
+    32768,
+    20586,
+    18792
+  ],
+  "mixedTriangles": 20420,
+  "zipBytes": 3837036,
+  "totalMs": 2148,
+  "freshBabylonScene": true,
+  "skirts": false
+}
