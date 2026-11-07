@@ -1,0 +1,1179 @@
+[
+  {
+    "name": "materials-overview",
+    "query": "view=overview&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        131.8,
+        161.1,
+        186.1
+      ],
+      "waterFraction": 0.626982421875,
+      "skyFraction": 0.6134895833333334,
+      "landFraction": 0.373017578125,
+      "darkFraction": 0.011090494791666667,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "overview",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -1.0471975511965976,
+        "beta": 1.02,
+        "radius": 1177.6,
+        "position": [
+          1013.721203323785,
+          673.9157441939425,
+          -357.0066153913905
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "materials-cliff",
+    "query": "view=cliff&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        109.2,
+        130.4,
+        119.2
+      ],
+      "waterFraction": 0.335966796875,
+      "skyFraction": 0.33537977430555554,
+      "landFraction": 0.664033203125,
+      "darkFraction": 0.13327039930555556,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "cliff",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -2.2,
+        "beta": 1.15,
+        "radius": 150,
+        "position": [
+          899.4256102049437,
+          175.70139219463533,
+          661.3050455144754
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "materials-vertex-only",
+    "query": "view=overview&resolution=257&quality=0",
+    "probe": {
+      "avg": [
+        131.1,
+        160.4,
+        185.7
+      ],
+      "waterFraction": 0.6273621961805556,
+      "skyFraction": 0.6134765625,
+      "landFraction": 0.37263780381944445,
+      "darkFraction": 0.011573350694444444,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "overview",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -1.0471975511965976,
+        "beta": 1.02,
+        "radius": 1177.6,
+        "position": [
+          1013.721203323785,
+          673.9157441939425,
+          -357.0066153913905
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 0,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "water-lake",
+    "query": "view=lake&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        100.1,
+        115.7,
+        90.1
+      ],
+      "waterFraction": 0.18213541666666666,
+      "skyFraction": 0.12186089409722223,
+      "landFraction": 0.8178645833333333,
+      "darkFraction": 0.19899522569444444,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "lake",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -2.4,
+        "beta": 1.02,
+        "radius": 320,
+        "position": [
+          586.9314878887226,
+          266.81423208607475,
+          67.81836970269867
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "water-river",
+    "query": "view=river&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        71.1,
+        91.7,
+        54.9
+      ],
+      "waterFraction": 0.0060297309027777775,
+      "skyFraction": 0,
+      "landFraction": 0.9939702690972222,
+      "darkFraction": 0.43412543402777776,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "river",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -2.1,
+        "beta": 0.85,
+        "radius": 90,
+        "position": [
+          557.8647112602448,
+          110.09350952735348,
+          745.6338945572825
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "water-still",
+    "query": "view=lake&resolution=257&quality=2&waves=0",
+    "probe": {
+      "avg": [
+        100.1,
+        115.7,
+        90
+      ],
+      "waterFraction": 0.18227973090277777,
+      "skyFraction": 0.12185980902777778,
+      "landFraction": 0.8177202690972222,
+      "darkFraction": 0.19939670138888888,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "lake",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -2.4,
+        "beta": 1.02,
+        "radius": 320,
+        "position": [
+          586.9314878887226,
+          266.81423208607475,
+          67.81836970269867
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "under-terrain",
+    "query": "view=under&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        28,
+        30.8,
+        19.1
+      ],
+      "waterFraction": 0,
+      "skyFraction": 0,
+      "landFraction": 1,
+      "darkFraction": 0.9999609375,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "under",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": 0.7853981633974484,
+        "beta": 2.933957878242699,
+        "radius": 351.2448201549591,
+        "position": [
+          563.1999999999999,
+          -258.7394244384766,
+          563.1999999999999
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "chunk-seam",
+    "query": "view=seam&resolution=257&quality=2&chunk=256&lod=mixed",
+    "probe": {
+      "avg": [
+        116.7,
+        149.7,
+        161.3
+      ],
+      "waterFraction": 0.5928049045138889,
+      "skyFraction": 0.5905251736111111,
+      "landFraction": 0.4071950954861111,
+      "darkFraction": 0.05275390625,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "seam",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -1.6,
+        "beta": 1.15,
+        "radius": 420,
+        "position": [
+          -11.19395383236872,
+          256.72927595259614,
+          128.80260899312054
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "lod-consistency",
+    "query": "view=overview&resolution=257&quality=2&lod=low",
+    "probe": {
+      "avg": [
+        131.9,
+        161.2,
+        186.1
+      ],
+      "waterFraction": 0.6268782552083333,
+      "skyFraction": 0.6136729600694445,
+      "landFraction": 0.37312174479166665,
+      "darkFraction": 0.011046006944444445,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "overview",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -1.0471975511965976,
+        "beta": 1.02,
+        "radius": 1177.6,
+        "position": [
+          1013.721203323785,
+          673.9157441939425,
+          -357.0066153913905
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 2,
+      "levels": {
+        "c_0_0": 2,
+        "c_1_0": 2,
+        "c_2_0": 2,
+        "c_3_0": 2,
+        "c_0_1": 2,
+        "c_1_1": 2,
+        "c_2_1": 2,
+        "c_3_1": 2,
+        "c_0_2": 2,
+        "c_1_2": 2,
+        "c_2_2": 2,
+        "c_3_2": 2,
+        "c_0_3": 2,
+        "c_1_3": 2,
+        "c_2_3": 2,
+        "c_3_3": 2
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "water-coverage",
+    "query": "view=topdown&resolution=257&quality=0&hide=terrain",
+    "probe": {
+      "avg": [
+        127.6,
+        164.8,
+        212
+      ],
+      "waterFraction": 0.9992957899305556,
+      "skyFraction": 0.8662434895833333,
+      "landFraction": 0.0007042100694444445,
+      "darkFraction": 0.08469075520833333,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "topdown",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -1.5707963267948966,
+        "beta": 0.02,
+        "radius": 1075.2,
+        "position": [
+          512,
+          1128.9849671679044,
+          490.49743357132826
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 0,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "water-overview-only",
+    "query": "view=overview&resolution=257&quality=0&hide=terrain",
+    "probe": {
+      "avg": [
+        133.5,
+        171.5,
+        220.4
+      ],
+      "waterFraction": 0.9989572482638889,
+      "skyFraction": 0.9199945746527778,
+      "landFraction": 0.001042751736111111,
+      "darkFraction": 0.027186414930555555,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "overview",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 0,
+      "materials": "present",
+      "waterCells": 11741,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "camera": {
+        "alpha": -1.0471975511965976,
+        "beta": 1.02,
+        "radius": 1177.6,
+        "position": [
+          1013.721203323785,
+          673.9157441939425,
+          -357.0066153913905
+        ]
+      },
+      "plugin": "triplanar",
+      "quality": 0,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "material-map",
+    "query": "seed=42&resolution=257",
+    "probe": {
+      "note": "2d map"
+    },
+    "info": {
+      "kind": "2d-map"
+    },
+    "errors": []
+  },
+  {
+    "name": "three-overview",
+    "query": "view=overview&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        133,
+        163.5,
+        177.8
+      ],
+      "waterFraction": 0.7254633246527777,
+      "skyFraction": 0.6757747395833333,
+      "landFraction": 0.2745366753472222,
+      "darkFraction": 0.016727430555555554,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "overview",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "renderer": "three",
+      "version": "187",
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 89732,
+      "waterTriangles": 27354,
+      "waterMeshes": 16,
+      "waterCells": 11741,
+      "camera": {
+        "position": [
+          1013.721203323785,
+          673.9157441939425,
+          -357.0066153913905
+        ],
+        "target": null
+      },
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      },
+      "glRenderer": "WebKit WebGL",
+      "outputColorSpace": "srgb",
+      "toneMapping": 4
+    },
+    "errors": []
+  },
+  {
+    "name": "three-cliff",
+    "query": "view=cliff&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        122.6,
+        142.2,
+        126.9
+      ],
+      "waterFraction": 0.3732834201388889,
+      "skyFraction": 0.37273220486111114,
+      "landFraction": 0.6267165798611111,
+      "darkFraction": 0.08040147569444445,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "cliff",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "renderer": "three",
+      "version": "187",
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 89732,
+      "waterTriangles": 27354,
+      "waterMeshes": 16,
+      "waterCells": 11741,
+      "camera": {
+        "position": [
+          899.4256102049437,
+          175.70139219463533,
+          661.3050455144754
+        ],
+        "target": null
+      },
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      },
+      "glRenderer": "WebKit WebGL",
+      "outputColorSpace": "srgb",
+      "toneMapping": 4
+    },
+    "errors": []
+  },
+  {
+    "name": "three-lake",
+    "query": "view=lake&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        102.1,
+        120.7,
+        98
+      ],
+      "waterFraction": 0.2765646701388889,
+      "skyFraction": 0.16343532986111112,
+      "landFraction": 0.7234353298611111,
+      "darkFraction": 0.16814019097222221,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "lake",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "renderer": "three",
+      "version": "187",
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 89732,
+      "waterTriangles": 27354,
+      "waterMeshes": 16,
+      "waterCells": 11741,
+      "camera": {
+        "position": [
+          586.9314878887226,
+          266.81423208607475,
+          67.81836970269867
+        ],
+        "target": null
+      },
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      },
+      "glRenderer": "WebKit WebGL",
+      "outputColorSpace": "srgb",
+      "toneMapping": 4
+    },
+    "errors": []
+  },
+  {
+    "name": "three-river",
+    "query": "view=river&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        75.8,
+        98.3,
+        61.8
+      ],
+      "waterFraction": 0.10565755208333333,
+      "skyFraction": 0,
+      "landFraction": 0.8943424479166666,
+      "darkFraction": 0.4007291666666667,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "river",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "renderer": "three",
+      "version": "187",
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 89732,
+      "waterTriangles": 27354,
+      "waterMeshes": 16,
+      "waterCells": 11741,
+      "camera": {
+        "position": [
+          557.8647112602448,
+          110.09350952735348,
+          745.6338945572825
+        ],
+        "target": null
+      },
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      },
+      "glRenderer": "WebKit WebGL",
+      "outputColorSpace": "srgb",
+      "toneMapping": 4
+    },
+    "errors": []
+  },
+  {
+    "name": "three-under",
+    "query": "view=under&resolution=257&quality=2",
+    "probe": {
+      "avg": [
+        13.1,
+        17.6,
+        9.4
+      ],
+      "waterFraction": 0,
+      "skyFraction": 0,
+      "landFraction": 1,
+      "darkFraction": 1,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "under",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "renderer": "three",
+      "version": "187",
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 89732,
+      "waterTriangles": 27354,
+      "waterMeshes": 16,
+      "waterCells": 11741,
+      "camera": {
+        "position": [
+          563.2,
+          -258.7394244384766,
+          563.2
+        ],
+        "target": null
+      },
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      },
+      "glRenderer": "WebKit WebGL",
+      "outputColorSpace": "srgb",
+      "toneMapping": 4
+    },
+    "errors": []
+  },
+  {
+    "name": "three-seam",
+    "query": "view=seam&resolution=257&quality=2&chunk=256&lod=mixed",
+    "probe": {
+      "avg": [
+        120.7,
+        153.4,
+        156.4
+      ],
+      "waterFraction": 0.6417697482638889,
+      "skyFraction": 0.6067328559027778,
+      "landFraction": 0.3582302517361111,
+      "darkFraction": 0.048671875,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "seam",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "renderer": "three",
+      "version": "187",
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 89732,
+      "waterTriangles": 27354,
+      "waterMeshes": 16,
+      "waterCells": 11741,
+      "camera": {
+        "position": [
+          -11.19395383236872,
+          256.72927595259614,
+          128.80260899312054
+        ],
+        "target": null
+      },
+      "quality": 2,
+      "levels": {
+        "c_0_0": 0,
+        "c_1_0": 1,
+        "c_2_0": 2,
+        "c_3_0": 0,
+        "c_0_1": 1,
+        "c_1_1": 2,
+        "c_2_1": 0,
+        "c_3_1": 1,
+        "c_0_2": 2,
+        "c_1_2": 0,
+        "c_2_2": 1,
+        "c_3_2": 2,
+        "c_0_3": 0,
+        "c_1_3": 1,
+        "c_2_3": 2,
+        "c_3_3": 0
+      },
+      "glRenderer": "WebKit WebGL",
+      "outputColorSpace": "srgb",
+      "toneMapping": 4
+    },
+    "errors": []
+  },
+  {
+    "name": "three-lod-consistency",
+    "query": "view=overview&resolution=257&quality=2&lod=low",
+    "probe": {
+      "avg": [
+        132.9,
+        163.4,
+        177.7
+      ],
+      "waterFraction": 0.7255913628472223,
+      "skyFraction": 0.6759092881944444,
+      "landFraction": 0.2744086371527778,
+      "darkFraction": 0.017103949652777777,
+      "width": 1280,
+      "height": 720
+    },
+    "info": {
+      "view": "overview",
+      "seed": 42,
+      "resolution": 257,
+      "chunkMeters": 256,
+      "renderer": "three",
+      "version": "187",
+      "generator": "0.5.0",
+      "chunks": 16,
+      "chunkGrid": [
+        4,
+        4
+      ],
+      "triangles": 55814,
+      "waterTriangles": 27354,
+      "waterMeshes": 16,
+      "waterCells": 11741,
+      "camera": {
+        "position": [
+          1013.721203323785,
+          673.9157441939425,
+          -357.0066153913905
+        ],
+        "target": null
+      },
+      "quality": 2,
+      "levels": {
+        "c_0_0": 2,
+        "c_1_0": 2,
+        "c_2_0": 2,
+        "c_3_0": 2,
+        "c_0_1": 2,
+        "c_1_1": 2,
+        "c_2_1": 2,
+        "c_3_1": 2,
+        "c_0_2": 2,
+        "c_1_2": 2,
+        "c_2_2": 2,
+        "c_3_2": 2,
+        "c_0_3": 2,
+        "c_1_3": 2,
+        "c_2_3": 2,
+        "c_3_3": 2
+      },
+      "glRenderer": "WebKit WebGL",
+      "outputColorSpace": "srgb",
+      "toneMapping": 4
+    },
+    "errors": []
+  }
+]

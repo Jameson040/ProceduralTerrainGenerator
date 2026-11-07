@@ -1,6 +1,6 @@
 {
   "kind": "terrain-world",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "world": {
     "id": "world-42-129x129-17aa9092",
     "source_shape": [
@@ -78,7 +78,7 @@
       "cell_size": 8,
       "min_height": 31.25922966003418,
       "max_height": 169.69125366210938,
-      "generation_time_ms": 343.91,
+      "generation_time_ms": 481.55,
       "water_cells": 3174,
       "source": "browser",
       "lake_cells": 2735,
@@ -97,11 +97,11 @@
       "river_carved_volume_m3": 202391.39,
       "river_bed_cells": 1207,
       "timing_ms": {
-        "terrain": 195.95,
-        "erosion": 47.15,
-        "drainage": 55.44,
-        "lakes_rivers": 39.28,
-        "water": 6.09
+        "terrain": 285.95,
+        "erosion": 65.19,
+        "drainage": 56.97,
+        "lakes_rivers": 67.13,
+        "water": 6.31
       },
       "lakebed_min": 31.259,
       "lakebed_max": 129.312,
@@ -540,6 +540,44 @@
           "cell_count": 5
         }
       ]
+    },
+    "render": {
+      "material": {
+        "rock_slope": 0.3,
+        "sand_shore_m": 5,
+        "snow_line": 0.78,
+        "soil_bias": 0.35,
+        "variation": 0.55,
+        "texture_scale_m": 9,
+        "quality": 2
+      },
+      "water": {
+        "opacity": 0.86,
+        "lake_shallow": [
+          0.44,
+          0.7,
+          0.66
+        ],
+        "lake_deep": [
+          0.1,
+          0.3,
+          0.42
+        ],
+        "river_shallow": [
+          0.46,
+          0.68,
+          0.6
+        ],
+        "river_deep": [
+          0.11,
+          0.32,
+          0.36
+        ],
+        "depth_scale_m": 2.2,
+        "motion": 0.35,
+        "wave_scale_m": 14,
+        "gloss": 0.72
+      }
     },
     "coordinates": "global-x-y-z-metres",
     "winding": "clockwise-from-above-left-handed-y-up",

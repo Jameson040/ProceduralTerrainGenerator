@@ -10,6 +10,8 @@ import ChunkPanel from "./viewer/ChunkPanel";
 import { balanceLods, createWorld } from "./world/world";
 import { exportWorldZip, extractChunk, importWorldZip, loadChunkFiles, type ChunkFile } from "./world/export";
 import { validateSeams, type SeamReport } from "./world/validate";
+import LookPanel from "./viewer/LookPanel";
+import { defaultVisualSettings, type VisualSettings } from "./terrain/visual";
 import type { ChunkLayout, ChunkViewOptions, Lod, WorldData, WorldViewStats } from "./world/types";
 
 type NumKey = { [K in keyof TerrainSettings]: TerrainSettings[K] extends number ? K : never }[keyof TerrainSettings];
@@ -54,7 +56,10 @@ export default function App() {
   const [settings, setSettings] = useState<TerrainSettings>(() => ({ ...defaultSettings(), resolution: 257 }));
   const [terrain, setTerrain] = useState<TerrainData | null>(null);
   const [busy, setBusy] = useState(false);
-  const [view, setView] = useState<ViewerOptions>({ colorMode: "natural", wireframe: false, showWater: true, shadows: true });
+  const [view, setView] = useState<ViewerOptions>({ colorMode: "natural", wireframe: false, showWater: true, shadows: true, visual: defaultVisualSettings() });
+  const [visual, setVisual] = useState<VisualSettings>(() => defaultVisualSettings());
+  // Material/water settings live on the world so exports and imports round-trip them.
+  useEffect(() => { setWorld((w) => (w && w.visual !== visual ? { ...w, visual } : w)); }, [visual]);
   const [panelOpen, setPanelOpen] = useState(true);
   const fileRef = useRef<HTMLInputElement>(null);
   const worldFileRef = useRef<HTMLInputElement>(null);
@@ -124,6 +129,7 @@ export default function App() {
     }
     ++generation.current;
     setWorld(w); setTerrain(w.terrain); setSettings(w.terrain.settings); setLayout(w.layout); setSeamReport(null);
+    if (w.visual) setVisual(w.visual);
     setChunkView(v => ({ ...v, scope: "world", selected: [...w.available][0], hidden: [] }));
     setSceneKey(k => k + 1); setFocusToken(0);
     setNotice(`${w.available.size} / ${w.chunks.length} individual chunk files loaded into a fresh Babylon scene. No generation or erosion rerun.`);
@@ -142,13 +148,13 @@ export default function App() {
     <div className="h-screen w-screen bg-stone-950 text-stone-200 flex overflow-hidden font-sans">
       {/* Viewport */}
       <div className="relative flex-1 min-w-0">
-        <TerrainViewer key={sceneKey} world={world} options={view} chunks={chunkView} focusToken={focusToken}
+        <TerrainViewer key={sceneKey} world={world} options={{ ...view, visual }} chunks={chunkView} focusToken={focusToken}
           onStats={setWorldStats} onSelect={id => setChunkView(v => ({ ...v, selected: id }))} />
 
         {/* Top bar */}
         <div className="absolute top-0 left-0 right-0 p-3 flex flex-wrap gap-2 items-start justify-between pointer-events-none">
           <div className="pointer-events-auto bg-stone-950/70 backdrop-blur rounded-lg px-3 py-2 border border-stone-800">
-            <div className="text-sm font-semibold tracking-tight">Procedural Terrain Generator <span className="text-stone-500 font-normal">Phase 3</span></div>
+            <div className="text-sm font-semibold tracking-tight">Procedural Terrain Generator <span className="text-stone-500 font-normal">Phase 4</span></div>
             <div className="text-[11px] text-stone-500">Drag to orbit · Scroll to zoom · Right-drag / Ctrl-drag to pan</div>
           </div>
           <div className="pointer-events-auto flex flex-wrap gap-1.5 bg-stone-950/70 backdrop-blur rounded-lg p-1.5 border border-stone-800">
@@ -331,6 +337,15 @@ export default function App() {
             <p className="text-[11px] text-stone-500 leading-relaxed">
               Lakes are bowls in the terrain filled by a separate water surface. The ground stays continuous
               underneath — hide Water in the top bar to walk the lakebed visually.
+            </p>
+          </Section>
+
+          <Section title="Materials & water look">
+            <LookPanel visual={visual} onChange={setVisual} world={world} />
+            <p className="text-[11px] text-stone-500 leading-relaxed">
+              Materials are derived from elevation, slope, orientation, flow and curvature — never placed
+              at random. Texture detail is triplanar in world space, so it never stretches on cliffs and
+              never changes scale across chunks or LODs.
             </p>
           </Section>
 

@@ -1,6 +1,7 @@
 /** Finite source-data views and crack-free indexed LOD. No renderer imports. */
 import type { TerrainData } from "../terrain/types";
 import type { ChunkDescriptor, ChunkLayout, IndexedMesh, Lod, WorldData } from "./types";
+import { defaultVisualSettings } from "../terrain/visual";
 
 export const spacing = (t: TerrainData): [number, number] => [t.spacing_x ?? t.cell_size, t.spacing_z ?? t.cell_size];
 
@@ -100,7 +101,8 @@ export function createWorld(t: TerrainData, layout: ChunkLayout = { chunk_width:
     chunk_cells: [cx, cz], chunks, normals: globalNormals(t.heights, w, d, sx, sz),
     water_surface: waterSurface, water_normals: globalNormals(waterSurface, w, d, sx, sz),
     water_cells: waterCells, protected_cells: protectedCells, protected_prefix: prefix, meshes: new Map(),
-    imported: false, available: new Set(chunks.map(c => c.id)),
+    imported: false, available: new Set(chunks.map(c => c.id)), materials: null, materialsKey: "",
+    visual: defaultVisualSettings(),
   };
 }
 
@@ -115,7 +117,7 @@ export function sampleField(a: Float32Array, w: number, d: number, x: number, z:
 
 function meshWriter(world: WorldData, water: boolean) {
   const t = world.terrain, w = t.width, d = t.depth, [sx, sz] = spacing(t);
-  const positions: number[] = [], normals: number[] = [], uvs: number[] = [], samples: number[] = [], indices: number[] = [];
+  const positions: number[] = [], normals: number[] = [], uvs: number[] = [], worldUvs: number[] = [], samples: number[] = [], indices: number[] = [];
   const map = new Map<string, number>();
   const field = water ? world.water_surface : t.heights, nf = water ? world.water_normals : world.normals;
   const vert = (x: number, z: number) => {
@@ -123,7 +125,8 @@ function meshWriter(world: WorldData, water: boolean) {
     if (existing !== undefined) return existing;
     const i = positions.length / 3;
     map.set(key, i);
-    positions.push(t.origin_x + x * sx, sampleField(field, w, d, x, z), t.origin_z + z * sz);
+    const wx = t.origin_x + x * sx, wz = t.origin_z + z * sz;
+    positions.push(wx, sampleField(field, w, d, x, z), wz);
     if (Number.isInteger(x) && Number.isInteger(z)) {
       const k = (z * w + x) * 3;
       normals.push(nf[k], nf[k + 1], nf[k + 2]);
@@ -131,7 +134,9 @@ function meshWriter(world: WorldData, water: boolean) {
       const n = [0, 1, 2].map(c => sampleField(nf, w, d, x, z, 3, c)), len = Math.hypot(...n);
       normals.push(n[0] / len || 0, n[1] / len, n[2] / len || 0);
     }
-    uvs.push(x / (w - 1), z / (d - 1)); samples.push(x, z);
+    // Normalised UVs stay for interchange; the world UV is metres and therefore
+    // independent of which chunk (or LOD) a vertex happens to belong to.
+    uvs.push(x / (w - 1), z / (d - 1)); worldUvs.push(wx, wz); samples.push(x, z);
     return i;
   };
   const quad = (x: number, z: number, right: number, bottom: number) => {
@@ -139,7 +144,8 @@ function meshWriter(world: WorldData, water: boolean) {
     indices.push(a, b, c, b, e, c);
   };
   const finish = (): IndexedMesh => ({ positions: Float32Array.from(positions), normals: Float32Array.from(normals),
-    uvs: Float32Array.from(uvs), samples: Float32Array.from(samples), indices: Uint32Array.from(indices) });
+    uvs: Float32Array.from(uvs), world_uv: Float32Array.from(worldUvs), samples: Float32Array.from(samples),
+    indices: Uint32Array.from(indices) });
   return { vert, quad, indices, finish };
 }
 

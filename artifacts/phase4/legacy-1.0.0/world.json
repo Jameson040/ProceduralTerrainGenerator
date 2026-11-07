@@ -1,0 +1,871 @@
+{
+  "kind": "terrain-world",
+  "version": "1.0.0",
+  "world": {
+    "id": "world-42-129x129-17aa9092",
+    "source_shape": [
+      129,
+      129
+    ],
+    "origin": [
+      0,
+      0
+    ],
+    "spacing": [
+      8,
+      8
+    ],
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "chunk_grid": [
+      4,
+      4
+    ],
+    "chunk_cells": [
+      32,
+      32
+    ],
+    "layout": {
+      "chunk_width": 256,
+      "chunk_depth": 256
+    },
+    "settings": {
+      "seed": 42,
+      "world_width": 1024,
+      "world_depth": 1024,
+      "origin_x": 0,
+      "origin_z": 0,
+      "resolution": 129,
+      "height_scale": 180,
+      "mountain_amount": 0.55,
+      "mountain_frequency": 1,
+      "mountain_height": 1,
+      "mountain_sharpness": 1.4,
+      "hill_amount": 0.5,
+      "valley_depth": 0.45,
+      "cliff_amount": 0.6,
+      "terrain_roughness": 0.45,
+      "detail_scale": 42,
+      "warp_strength": 60,
+      "base_frequency": 0.002380952380952381,
+      "water_enabled": true,
+      "water_level": 0.2,
+      "shore_softness": 0.6,
+      "basin_lakes_enabled": true,
+      "min_lake_depth": 1.5,
+      "erosion_quality": 1,
+      "hydraulic_enabled": true,
+      "hydraulic_strength": 0.55,
+      "thermal_enabled": true,
+      "thermal_talus": 34,
+      "thermal_strength": 0.6,
+      "rivers_enabled": true,
+      "river_density": 0.5,
+      "river_width": 8,
+      "river_depth": 1.4,
+      "settings_version": 3
+    },
+    "metadata": {
+      "generator_version": "0.5.0",
+      "settings_version": 3,
+      "seed": 42,
+      "grid": [
+        129,
+        129
+      ],
+      "cell_size": 8,
+      "min_height": 31.25922966003418,
+      "max_height": 169.69125366210938,
+      "generation_time_ms": 343.91,
+      "water_cells": 3174,
+      "source": "browser",
+      "lake_cells": 2735,
+      "river_cells": 439,
+      "river_count": 24,
+      "lake_count": 8,
+      "watershed_count": 38,
+      "sink_count": 42,
+      "max_flow_accumulation": 11721,
+      "erosion_quality": 1,
+      "hydraulic_droplets": 2663,
+      "thermal_iterations": 3,
+      "erosion_mean_abs_m": 1.0947,
+      "erosion_max_cut_m": 27.9528,
+      "erosion_max_fill_m": 11.3487,
+      "river_carved_volume_m3": 202391.39,
+      "river_bed_cells": 1207,
+      "timing_ms": {
+        "terrain": 195.95,
+        "erosion": 47.15,
+        "drainage": 55.44,
+        "lakes_rivers": 39.28,
+        "water": 6.09
+      },
+      "lakebed_min": 31.259,
+      "lakebed_max": 129.312,
+      "lakebed_mean": 58.252,
+      "max_water_depth": 27.681,
+      "water_level": 36,
+      "underwater_terrain_cells": 3174
+    },
+    "water_info": {
+      "level": 36,
+      "lakes": [
+        {
+          "cell_count": 1797,
+          "area_m2": 115008,
+          "surface_elevation_m": 44.539,
+          "lakebed_min_m": 31.259,
+          "lakebed_max_m": 44.505,
+          "max_depth_m": 13.28,
+          "mean_depth_m": 3.357,
+          "centroid": [
+            57.98,
+            64.9
+          ],
+          "source": "closed-basin"
+        },
+        {
+          "cell_count": 423,
+          "area_m2": 27072,
+          "surface_elevation_m": 99.212,
+          "lakebed_min_m": 71.531,
+          "lakebed_max_m": 99.048,
+          "max_depth_m": 27.681,
+          "mean_depth_m": 16.091,
+          "centroid": [
+            99.84,
+            33.48
+          ],
+          "source": "closed-basin"
+        },
+        {
+          "cell_count": 238,
+          "area_m2": 15232,
+          "surface_elevation_m": 79.239,
+          "lakebed_min_m": 65.866,
+          "lakebed_max_m": 79.164,
+          "max_depth_m": 13.373,
+          "mean_depth_m": 5.57,
+          "centroid": [
+            108.18,
+            77.15
+          ],
+          "source": "closed-basin"
+        },
+        {
+          "cell_count": 94,
+          "area_m2": 6016,
+          "surface_elevation_m": 83.563,
+          "lakebed_min_m": 81.138,
+          "lakebed_max_m": 83.468,
+          "max_depth_m": 2.425,
+          "mean_depth_m": 0.906,
+          "centroid": [
+            70.93,
+            16.37
+          ],
+          "source": "closed-basin"
+        },
+        {
+          "cell_count": 70,
+          "area_m2": 4480,
+          "surface_elevation_m": 118.557,
+          "lakebed_min_m": 108.689,
+          "lakebed_max_m": 118.474,
+          "max_depth_m": 9.868,
+          "mean_depth_m": 5.65,
+          "centroid": [
+            120.77,
+            11.69
+          ],
+          "source": "closed-basin"
+        },
+        {
+          "cell_count": 52,
+          "area_m2": 3328,
+          "surface_elevation_m": 127.547,
+          "lakebed_min_m": 112.364,
+          "lakebed_max_m": 127.5,
+          "max_depth_m": 15.183,
+          "mean_depth_m": 5.023,
+          "centroid": [
+            117.15,
+            52.58
+          ],
+          "source": "closed-basin"
+        },
+        {
+          "cell_count": 30,
+          "area_m2": 1920,
+          "surface_elevation_m": 129.473,
+          "lakebed_min_m": 126.329,
+          "lakebed_max_m": 129.312,
+          "max_depth_m": 3.143,
+          "mean_depth_m": 1.986,
+          "centroid": [
+            39.5,
+            11.33
+          ],
+          "source": "closed-basin"
+        },
+        {
+          "cell_count": 30,
+          "area_m2": 1920,
+          "surface_elevation_m": 92.937,
+          "lakebed_min_m": 87.514,
+          "lakebed_max_m": 92.897,
+          "max_depth_m": 5.423,
+          "mean_depth_m": 2.457,
+          "centroid": [
+            87.67,
+            122.6
+          ],
+          "source": "closed-basin"
+        }
+      ],
+      "rivers": [
+        {
+          "source_cell": [
+            44,
+            106
+          ],
+          "length_m": 216,
+          "mean_width_m": 6.54,
+          "mean_depth_m": 0.52,
+          "max_depth_m": 0.99,
+          "bank_height_m": 0.32,
+          "max_accumulation": 1098,
+          "cell_count": 27
+        },
+        {
+          "source_cell": [
+            74,
+            25
+          ],
+          "length_m": 168,
+          "mean_width_m": 7.26,
+          "mean_depth_m": 0.68,
+          "max_depth_m": 1.2,
+          "bank_height_m": 0.35,
+          "max_accumulation": 1203,
+          "cell_count": 21
+        },
+        {
+          "source_cell": [
+            15,
+            49
+          ],
+          "length_m": 160,
+          "mean_width_m": 11.48,
+          "mean_depth_m": 1.22,
+          "max_depth_m": 1.96,
+          "bank_height_m": 0.54,
+          "max_accumulation": 11721,
+          "cell_count": 20
+        },
+        {
+          "source_cell": [
+            36,
+            93
+          ],
+          "length_m": 160,
+          "mean_width_m": 6.48,
+          "mean_depth_m": 0.67,
+          "max_depth_m": 1.05,
+          "bank_height_m": 0.32,
+          "max_accumulation": 573,
+          "cell_count": 20
+        },
+        {
+          "source_cell": [
+            46,
+            26
+          ],
+          "length_m": 152,
+          "mean_width_m": 5.94,
+          "mean_depth_m": 0.58,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.3,
+          "max_accumulation": 256,
+          "cell_count": 19
+        },
+        {
+          "source_cell": [
+            93,
+            44
+          ],
+          "length_m": 144,
+          "mean_width_m": 7.44,
+          "mean_depth_m": 0.66,
+          "max_depth_m": 1.22,
+          "bank_height_m": 0.36,
+          "max_accumulation": 1324,
+          "cell_count": 18
+        },
+        {
+          "source_cell": [
+            104,
+            84
+          ],
+          "length_m": 128,
+          "mean_width_m": 7.26,
+          "mean_depth_m": 0.68,
+          "max_depth_m": 1.06,
+          "bank_height_m": 0.35,
+          "max_accumulation": 1175,
+          "cell_count": 16
+        },
+        {
+          "source_cell": [
+            103,
+            113
+          ],
+          "length_m": 128,
+          "mean_width_m": 6.19,
+          "mean_depth_m": 0.54,
+          "max_depth_m": 1.16,
+          "bank_height_m": 0.31,
+          "max_accumulation": 953,
+          "cell_count": 16
+        },
+        {
+          "source_cell": [
+            12,
+            24
+          ],
+          "length_m": 120,
+          "mean_width_m": 6.2,
+          "mean_depth_m": 0.48,
+          "max_depth_m": 0.58,
+          "bank_height_m": 0.31,
+          "max_accumulation": 499,
+          "cell_count": 15
+        },
+        {
+          "source_cell": [
+            31,
+            32
+          ],
+          "length_m": 120,
+          "mean_width_m": 5.9,
+          "mean_depth_m": 0.54,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.29,
+          "max_accumulation": 263,
+          "cell_count": 15
+        },
+        {
+          "source_cell": [
+            15,
+            100
+          ],
+          "length_m": 120,
+          "mean_width_m": 6.07,
+          "mean_depth_m": 0.53,
+          "max_depth_m": 1.04,
+          "bank_height_m": 0.3,
+          "max_accumulation": 371,
+          "cell_count": 15
+        },
+        {
+          "source_cell": [
+            19,
+            68
+          ],
+          "length_m": 96,
+          "mean_width_m": 5.96,
+          "mean_depth_m": 0.61,
+          "max_depth_m": 0.96,
+          "bank_height_m": 0.3,
+          "max_accumulation": 237,
+          "cell_count": 12
+        },
+        {
+          "source_cell": [
+            93,
+            123
+          ],
+          "length_m": 96,
+          "mean_width_m": 6.39,
+          "mean_depth_m": 0.67,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.32,
+          "max_accumulation": 451,
+          "cell_count": 12
+        },
+        {
+          "source_cell": [
+            91,
+            65
+          ],
+          "length_m": 88,
+          "mean_width_m": 6.12,
+          "mean_depth_m": 0.57,
+          "max_depth_m": 1,
+          "bank_height_m": 0.3,
+          "max_accumulation": 336,
+          "cell_count": 11
+        },
+        {
+          "source_cell": [
+            72,
+            107
+          ],
+          "length_m": 72,
+          "mean_width_m": 5.96,
+          "mean_depth_m": 0.5,
+          "max_depth_m": 0.88,
+          "bank_height_m": 0.3,
+          "max_accumulation": 241,
+          "cell_count": 9
+        },
+        {
+          "source_cell": [
+            0,
+            112
+          ],
+          "length_m": 72,
+          "mean_width_m": 5.94,
+          "mean_depth_m": 0.6,
+          "max_depth_m": 1.03,
+          "bank_height_m": 0.3,
+          "max_accumulation": 335,
+          "cell_count": 9
+        },
+        {
+          "source_cell": [
+            91,
+            91
+          ],
+          "length_m": 56,
+          "mean_width_m": 5.76,
+          "mean_depth_m": 0.49,
+          "max_depth_m": 0.53,
+          "bank_height_m": 0.29,
+          "max_accumulation": 149,
+          "cell_count": 7
+        },
+        {
+          "source_cell": [
+            82,
+            11
+          ],
+          "length_m": 48,
+          "mean_width_m": 5.76,
+          "mean_depth_m": 0.54,
+          "max_depth_m": 0.56,
+          "bank_height_m": 0.29,
+          "max_accumulation": 160,
+          "cell_count": 6
+        },
+        {
+          "source_cell": [
+            59,
+            16
+          ],
+          "length_m": 48,
+          "mean_width_m": 5.76,
+          "mean_depth_m": 0.6,
+          "max_depth_m": 0.97,
+          "bank_height_m": 0.29,
+          "max_accumulation": 148,
+          "cell_count": 6
+        },
+        {
+          "source_cell": [
+            120,
+            88
+          ],
+          "length_m": 48,
+          "mean_width_m": 5.79,
+          "mean_depth_m": 0.67,
+          "max_depth_m": 0.94,
+          "bank_height_m": 0.29,
+          "max_accumulation": 156,
+          "cell_count": 6
+        },
+        {
+          "source_cell": [
+            56,
+            111
+          ],
+          "length_m": 48,
+          "mean_width_m": 5.92,
+          "mean_depth_m": 0.33,
+          "max_depth_m": 0.68,
+          "bank_height_m": 0.29,
+          "max_accumulation": 191,
+          "cell_count": 6
+        },
+        {
+          "source_cell": [
+            35,
+            123
+          ],
+          "length_m": 48,
+          "mean_width_m": 5.81,
+          "mean_depth_m": 0.93,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.29,
+          "max_accumulation": 260,
+          "cell_count": 6
+        },
+        {
+          "source_cell": [
+            0,
+            13
+          ],
+          "length_m": 40,
+          "mean_width_m": 5.9,
+          "mean_depth_m": 0.64,
+          "max_depth_m": 1.1,
+          "bank_height_m": 0.29,
+          "max_accumulation": 646,
+          "cell_count": 5
+        },
+        {
+          "source_cell": [
+            12,
+            43
+          ],
+          "length_m": 40,
+          "mean_width_m": 5.79,
+          "mean_depth_m": 0.68,
+          "max_depth_m": 0.97,
+          "bank_height_m": 0.29,
+          "max_accumulation": 164,
+          "cell_count": 5
+        }
+      ]
+    },
+    "coordinates": "global-x-y-z-metres",
+    "winding": "clockwise-from-above-left-handed-y-up",
+    "normals": "global-source-central-differences",
+    "stitching": "pinned-source-boundary-and-conforming-transition-fans-no-skirts"
+  },
+  "chunks": [
+    {
+      "id": "c_0_0",
+      "coord": [
+        0,
+        0
+      ],
+      "rect": [
+        0,
+        0,
+        32,
+        32
+      ],
+      "neighbors": {
+        "north": null,
+        "east": "c_1_0",
+        "south": "c_0_1",
+        "west": null
+      },
+      "file": "chunks/c_0_0.json"
+    },
+    {
+      "id": "c_1_0",
+      "coord": [
+        1,
+        0
+      ],
+      "rect": [
+        32,
+        0,
+        64,
+        32
+      ],
+      "neighbors": {
+        "north": null,
+        "east": "c_2_0",
+        "south": "c_1_1",
+        "west": "c_0_0"
+      },
+      "file": "chunks/c_1_0.json"
+    },
+    {
+      "id": "c_2_0",
+      "coord": [
+        2,
+        0
+      ],
+      "rect": [
+        64,
+        0,
+        96,
+        32
+      ],
+      "neighbors": {
+        "north": null,
+        "east": "c_3_0",
+        "south": "c_2_1",
+        "west": "c_1_0"
+      },
+      "file": "chunks/c_2_0.json"
+    },
+    {
+      "id": "c_3_0",
+      "coord": [
+        3,
+        0
+      ],
+      "rect": [
+        96,
+        0,
+        128,
+        32
+      ],
+      "neighbors": {
+        "north": null,
+        "east": null,
+        "south": "c_3_1",
+        "west": "c_2_0"
+      },
+      "file": "chunks/c_3_0.json"
+    },
+    {
+      "id": "c_0_1",
+      "coord": [
+        0,
+        1
+      ],
+      "rect": [
+        0,
+        32,
+        32,
+        64
+      ],
+      "neighbors": {
+        "north": "c_0_0",
+        "east": "c_1_1",
+        "south": "c_0_2",
+        "west": null
+      },
+      "file": "chunks/c_0_1.json"
+    },
+    {
+      "id": "c_1_1",
+      "coord": [
+        1,
+        1
+      ],
+      "rect": [
+        32,
+        32,
+        64,
+        64
+      ],
+      "neighbors": {
+        "north": "c_1_0",
+        "east": "c_2_1",
+        "south": "c_1_2",
+        "west": "c_0_1"
+      },
+      "file": "chunks/c_1_1.json"
+    },
+    {
+      "id": "c_2_1",
+      "coord": [
+        2,
+        1
+      ],
+      "rect": [
+        64,
+        32,
+        96,
+        64
+      ],
+      "neighbors": {
+        "north": "c_2_0",
+        "east": "c_3_1",
+        "south": "c_2_2",
+        "west": "c_1_1"
+      },
+      "file": "chunks/c_2_1.json"
+    },
+    {
+      "id": "c_3_1",
+      "coord": [
+        3,
+        1
+      ],
+      "rect": [
+        96,
+        32,
+        128,
+        64
+      ],
+      "neighbors": {
+        "north": "c_3_0",
+        "east": null,
+        "south": "c_3_2",
+        "west": "c_2_1"
+      },
+      "file": "chunks/c_3_1.json"
+    },
+    {
+      "id": "c_0_2",
+      "coord": [
+        0,
+        2
+      ],
+      "rect": [
+        0,
+        64,
+        32,
+        96
+      ],
+      "neighbors": {
+        "north": "c_0_1",
+        "east": "c_1_2",
+        "south": "c_0_3",
+        "west": null
+      },
+      "file": "chunks/c_0_2.json"
+    },
+    {
+      "id": "c_1_2",
+      "coord": [
+        1,
+        2
+      ],
+      "rect": [
+        32,
+        64,
+        64,
+        96
+      ],
+      "neighbors": {
+        "north": "c_1_1",
+        "east": "c_2_2",
+        "south": "c_1_3",
+        "west": "c_0_2"
+      },
+      "file": "chunks/c_1_2.json"
+    },
+    {
+      "id": "c_2_2",
+      "coord": [
+        2,
+        2
+      ],
+      "rect": [
+        64,
+        64,
+        96,
+        96
+      ],
+      "neighbors": {
+        "north": "c_2_1",
+        "east": "c_3_2",
+        "south": "c_2_3",
+        "west": "c_1_2"
+      },
+      "file": "chunks/c_2_2.json"
+    },
+    {
+      "id": "c_3_2",
+      "coord": [
+        3,
+        2
+      ],
+      "rect": [
+        96,
+        64,
+        128,
+        96
+      ],
+      "neighbors": {
+        "north": "c_3_1",
+        "east": null,
+        "south": "c_3_3",
+        "west": "c_2_2"
+      },
+      "file": "chunks/c_3_2.json"
+    },
+    {
+      "id": "c_0_3",
+      "coord": [
+        0,
+        3
+      ],
+      "rect": [
+        0,
+        96,
+        32,
+        128
+      ],
+      "neighbors": {
+        "north": "c_0_2",
+        "east": "c_1_3",
+        "south": null,
+        "west": null
+      },
+      "file": "chunks/c_0_3.json"
+    },
+    {
+      "id": "c_1_3",
+      "coord": [
+        1,
+        3
+      ],
+      "rect": [
+        32,
+        96,
+        64,
+        128
+      ],
+      "neighbors": {
+        "north": "c_1_2",
+        "east": "c_2_3",
+        "south": null,
+        "west": "c_0_3"
+      },
+      "file": "chunks/c_1_3.json"
+    },
+    {
+      "id": "c_2_3",
+      "coord": [
+        2,
+        3
+      ],
+      "rect": [
+        64,
+        96,
+        96,
+        128
+      ],
+      "neighbors": {
+        "north": "c_2_2",
+        "east": "c_3_3",
+        "south": null,
+        "west": "c_1_3"
+      },
+      "file": "chunks/c_2_3.json"
+    },
+    {
+      "id": "c_3_3",
+      "coord": [
+        3,
+        3
+      ],
+      "rect": [
+        96,
+        96,
+        128,
+        128
+      ],
+      "neighbors": {
+        "north": "c_3_2",
+        "east": null,
+        "south": null,
+        "west": "c_2_3"
+      },
+      "file": "chunks/c_3_3.json"
+    }
+  ]
+}
