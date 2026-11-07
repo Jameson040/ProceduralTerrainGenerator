@@ -93,7 +93,14 @@ class FiniteWorld:
         if terrain.water is not None:
             m = terrain.water.mask
             self.water_cells = m[:-1, :-1] | m[:-1, 1:] | m[1:, :-1] | m[1:, 1:]
-        self.prefix = np.pad(self.water_cells.astype(np.int64).cumsum(0).cumsum(1), ((1, 0), (1, 0)))
+        # Riverbeds and their banks are incised source geometry: coarse LOD must
+        # not flatten the channel, so the carved footprint is protected as well.
+        self.protected_cells = self.water_cells.copy()
+        bed = terrain.layers.get("river_bed_mask") if terrain.layers else None
+        if bed is not None:
+            b = np.asarray(bed) > 0.5
+            self.protected_cells = self.protected_cells | b[:-1, :-1] | b[:-1, 1:] | b[1:, :-1] | b[1:, 1:]
+        self.prefix = np.pad(self.protected_cells.astype(np.int64).cumsum(0).cumsum(1), ((1, 0), (1, 0)))
         self.chunks = []
         self.meshes = {}
         def cid(x, z):

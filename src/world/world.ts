@@ -73,17 +73,24 @@ export function createWorld(t: TerrainData, layout: ChunkLayout = { chunk_width:
     neighbors: { north: id(x, z - 1), east: id(x + 1, z), south: id(x, z + 1), west: id(x - 1, z) },
   });
   const waterCells = new Uint8Array((w - 1) * (d - 1));
+  // Riverbeds and their banks are incised source geometry: coarse LOD must not
+  // flatten the channel, so the carved footprint is protected exactly like water.
+  const bedCells = t.layers?.river_bed_mask;
+  const protectedCells = new Uint8Array((w - 1) * (d - 1));
   const mask = t.water?.mask;
-  if (mask) for (let z = 0; z < d - 1; z++) for (let x = 0; x < w - 1; x++) {
+  for (let z = 0; z < d - 1; z++) for (let x = 0; x < w - 1; x++) {
     const i = z * w + x;
-    waterCells[z * (w - 1) + x] = mask[i] || mask[i + 1] || mask[i + w] || mask[i + w + 1] ? 1 : 0;
+    const wet = mask ? (mask[i] || mask[i + 1] || mask[i + w] || mask[i + w + 1] ? 1 : 0) : 0;
+    waterCells[z * (w - 1) + x] = wet;
+    const incised = bedCells ? (bedCells[i] || bedCells[i + 1] || bedCells[i + w] || bedCells[i + w + 1] ? 1 : 0) : 0;
+    protectedCells[z * (w - 1) + x] = wet || incised ? 1 : 0;
   }
-  // A summed-area table makes water-aware detail preservation O(1) per LOD cell.
+  // A summed-area table makes detail preservation O(1) per LOD cell.
   const prefix = new Uint32Array(w * d);
   for (let z = 0; z < d - 1; z++) {
     let sum = 0;
     for (let x = 0; x < w - 1; x++) {
-      sum += waterCells[z * (w - 1) + x];
+      sum += protectedCells[z * (w - 1) + x];
       prefix[(z + 1) * w + x + 1] = prefix[z * w + x + 1] + sum;
     }
   }
@@ -92,7 +99,8 @@ export function createWorld(t: TerrainData, layout: ChunkLayout = { chunk_width:
     id: `world-${t.settings.seed}-${w}x${d}-${sourceHash(t)}`, terrain: t, layout: { ...layout }, columns, rows,
     chunk_cells: [cx, cz], chunks, normals: globalNormals(t.heights, w, d, sx, sz),
     water_surface: waterSurface, water_normals: globalNormals(waterSurface, w, d, sx, sz),
-    water_cells: waterCells, protected_prefix: prefix, meshes: new Map(), imported: false, available: new Set(chunks.map(c => c.id)),
+    water_cells: waterCells, protected_cells: protectedCells, protected_prefix: prefix, meshes: new Map(),
+    imported: false, available: new Set(chunks.map(c => c.id)),
   };
 }
 

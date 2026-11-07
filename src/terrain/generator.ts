@@ -183,9 +183,10 @@ export function generateTerrain(settings: TerrainSettings): TerrainData {
     erosion: new Float32Array(total),
     river_mask: new Float32Array(total),
     lake_mask: new Float32Array(total),
+    river_bed_mask: new Float32Array(total),
   };
   let min = Infinity, max = -Infinity, erosionAbs = 0, maxCut = 0, maxFill = 0;
-  let waterCells = 0, lakeCells = 0, riverCells = 0;
+  let waterCells = 0, lakeCells = 0, riverCells = 0, riverBedCells = 0;
   for (let i = 0; i < total; i++) {
     const v = heights[i];
     min = Math.min(min, v); max = Math.max(max, v);
@@ -196,6 +197,7 @@ export function generateTerrain(settings: TerrainSettings): TerrainData {
     if (data.water?.mask[i]) waterCells++;
     if (lakeField.mask[i]) { lakeCells++; layers.lake_mask[i] = 1; }
     if (network?.mask[i]) { riverCells++; layers.river_mask[i] = 1; }
+    if (network?.bed_mask[i]) { riverBedCells++; layers.river_bed_mask![i] = 1; }
   }
   layers.erosion = layers.erosion;
   data.layers = layers;
@@ -218,6 +220,7 @@ export function generateTerrain(settings: TerrainSettings): TerrainData {
   data.metadata.erosion_max_cut_m = Math.round(maxCut * 10000) / 10000;
   data.metadata.erosion_max_fill_m = Math.round(maxFill * 10000) / 10000;
   data.metadata.river_carved_volume_m3 = Math.round((network?.carved_volume ?? 0) * 100) / 100;
+  data.metadata.river_bed_cells = riverBedCells;
   data.metadata.timing_ms = {
     terrain: Math.round((tBase - t0) * 100) / 100,
     erosion: Math.round((tErosion - tBase) * 100) / 100,
@@ -271,6 +274,8 @@ export function extractRegion(t: TerrainData, x0: number, z0: number, w: number,
     erosion: sliceLayer(t.layers.erosion, t.width, w, d, x0, z0),
     river_mask: sliceLayer(t.layers.river_mask, t.width, w, d, x0, z0),
     lake_mask: sliceLayer(t.layers.lake_mask, t.width, w, d, x0, z0),
+    river_bed_mask: t.layers.river_bed_mask
+      ? sliceLayer(t.layers.river_bed_mask, t.width, w, d, x0, z0) : new Float32Array(w * d),
   } : null;
   return {
     ...t, width: w, depth: d, heights,

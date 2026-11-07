@@ -30,6 +30,8 @@ export interface WorldData {
   water_surface: Float32Array;
   water_normals: Float32Array;
   water_cells: Uint8Array;
+  /** Quads that must keep source-detail topology at every LOD (water + riverbeds). */
+  protected_cells: Uint8Array;
   protected_prefix: Uint32Array;
   meshes: Map<string, IndexedMesh>;
   imported: boolean;
