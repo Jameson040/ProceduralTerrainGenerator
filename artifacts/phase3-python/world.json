@@ -2,7 +2,7 @@
   "kind": "terrain-world",
   "version": "1.0.0",
   "world": {
-    "id": "world-7-129x129-099ff350",
+    "id": "world-42-129x129-f63921ad",
     "source_shape": [
       129,
       129
@@ -32,7 +32,7 @@
       "chunk_depth": 256.0
     },
     "settings": {
-      "seed": 7,
+      "seed": 42,
       "world_width": 1024.0,
       "world_depth": 1024.0,
       "origin_x": 0.0,
@@ -68,172 +68,159 @@
       "settings_version": 3
     },
     "metadata": {
-      "generator_version": "0.3.0",
+      "generator_version": "0.5.0",
       "settings_version": 3,
-      "seed": 7,
+      "seed": 42,
       "grid": [
         129,
         129
       ],
       "cell_size": 8.0,
-      "min_height": 24.75358772277832,
-      "max_height": 154.88116455078125,
-      "generation_time_ms": 162.71,
+      "min_height": 30.138717651367188,
+      "max_height": 169.69125366210938,
+      "generation_time_ms": 301.6,
       "timing_ms": {
-        "terrain": 82.55,
-        "erosion": 22.02,
-        "drainage": 24.51,
-        "lakes_rivers": 33.44,
-        "water": 0.21
+        "terrain": 174.32,
+        "erosion": 27.38,
+        "drainage": 37.24,
+        "lakes_rivers": 62.26,
+        "water": 0.43
       },
-      "water_cells": 5883,
-      "lake_cells": 5190,
-      "river_cells": 693,
-      "river_count": 19,
-      "lake_count": 9,
-      "watershed_count": 147,
-      "max_flow_accumulation": 12818,
+      "water_cells": 3251,
+      "lake_cells": 2831,
+      "river_cells": 420,
+      "river_count": 24,
+      "lake_count": 8,
+      "watershed_count": 166,
+      "max_flow_accumulation": 11888,
       "erosion_quality": 1,
       "hydraulic_droplets": 2662,
       "thermal_iterations": 3,
-      "erosion_mean_abs_m": 0.998,
-      "erosion_max_cut_m": 17.2862,
-      "erosion_max_fill_m": 11.0797,
-      "river_carved_volume_m3": 193613.91,
-      "lakebed_min": 24.754,
-      "lakebed_max": 127.124,
-      "lakebed_mean": 53.121,
-      "max_water_depth": 36.153,
+      "erosion_mean_abs_m": 1.1013,
+      "erosion_max_cut_m": 26.6541,
+      "erosion_max_fill_m": 11.088,
+      "river_carved_volume_m3": 207582.12,
+      "river_bed_cells": 1184,
+      "lakebed_min": 30.139,
+      "lakebed_max": 129.127,
+      "lakebed_mean": 57.955,
+      "max_water_depth": 29.375,
       "water_level": 36.0,
-      "underwater_terrain_cells": 5883,
+      "underwater_terrain_cells": 3251,
       "source": "python"
     },
     "water_info": {
       "level": 36.0,
       "lakes": [
         {
-          "cell_count": 4641,
-          "area_m2": 297024.0,
-          "surface_elevation_m": 60.907,
-          "lakebed_min_m": 24.754,
-          "lakebed_max_m": 60.875,
-          "max_depth_m": 36.153,
-          "mean_depth_m": 16.291,
+          "cell_count": 1874,
+          "area_m2": 119936.0,
+          "surface_elevation_m": 44.705,
+          "lakebed_min_m": 30.139,
+          "lakebed_max_m": 44.675,
+          "max_depth_m": 14.567,
+          "mean_depth_m": 3.463,
           "centroid": [
-            65.73,
-            58.23
+            57.4,
+            64.64
           ],
           "source": "closed-basin"
         },
         {
-          "cell_count": 135,
-          "area_m2": 8640.0,
-          "surface_elevation_m": 118.71,
-          "lakebed_min_m": 105.272,
-          "lakebed_max_m": 118.65,
-          "max_depth_m": 13.438,
-          "mean_depth_m": 6.769,
+          "cell_count": 420,
+          "area_m2": 26880.0,
+          "surface_elevation_m": 99.213,
+          "lakebed_min_m": 69.838,
+          "lakebed_max_m": 99.039,
+          "max_depth_m": 29.375,
+          "mean_depth_m": 16.479,
           "centroid": [
-            112.33,
-            113.17
+            99.78,
+            33.5
           ],
           "source": "closed-basin"
         },
         {
-          "cell_count": 103,
-          "area_m2": 6592.0,
-          "surface_elevation_m": 69.545,
-          "lakebed_min_m": 62.511,
-          "lakebed_max_m": 69.449,
-          "max_depth_m": 7.033,
-          "mean_depth_m": 3.801,
+          "cell_count": 241,
+          "area_m2": 15424.0,
+          "surface_elevation_m": 79.33,
+          "lakebed_min_m": 65.56,
+          "lakebed_max_m": 79.286,
+          "max_depth_m": 13.77,
+          "mean_depth_m": 5.765,
           "centroid": [
-            110.87,
-            38.93
+            108.12,
+            77.06
           ],
           "source": "closed-basin"
         },
         {
-          "cell_count": 88,
-          "area_m2": 5632.0,
-          "surface_elevation_m": 78.896,
-          "lakebed_min_m": 73.832,
-          "lakebed_max_m": 78.853,
-          "max_depth_m": 5.064,
-          "mean_depth_m": 2.655,
+          "cell_count": 113,
+          "area_m2": 7232.0,
+          "surface_elevation_m": 83.573,
+          "lakebed_min_m": 80.221,
+          "lakebed_max_m": 83.541,
+          "max_depth_m": 3.352,
+          "mean_depth_m": 0.747,
           "centroid": [
-            5.74,
-            7.28
+            71.34,
+            14.94
           ],
           "source": "closed-basin"
         },
         {
-          "cell_count": 84,
-          "area_m2": 5376.0,
-          "surface_elevation_m": 127.21,
-          "lakebed_min_m": 112.74,
-          "lakebed_max_m": 127.124,
-          "max_depth_m": 14.47,
-          "mean_depth_m": 3.795,
+          "cell_count": 71,
+          "area_m2": 4544.0,
+          "surface_elevation_m": 118.497,
+          "lakebed_min_m": 109.149,
+          "lakebed_max_m": 118.357,
+          "max_depth_m": 9.348,
+          "mean_depth_m": 5.433,
           "centroid": [
-            9.55,
-            115.38
+            120.8,
+            11.58
           ],
           "source": "closed-basin"
         },
         {
-          "cell_count": 36,
-          "area_m2": 2304.0,
-          "surface_elevation_m": 82.337,
-          "lakebed_min_m": 79.53,
-          "lakebed_max_m": 82.306,
-          "max_depth_m": 2.806,
-          "mean_depth_m": 0.901,
+          "cell_count": 52,
+          "area_m2": 3328.0,
+          "surface_elevation_m": 127.547,
+          "lakebed_min_m": 114.298,
+          "lakebed_max_m": 127.498,
+          "max_depth_m": 13.249,
+          "mean_depth_m": 5.117,
           "centroid": [
-            33.14,
-            84.61
+            117.15,
+            52.6
           ],
           "source": "closed-basin"
         },
         {
-          "cell_count": 35,
-          "area_m2": 2240.0,
-          "surface_elevation_m": 107.455,
-          "lakebed_min_m": 103.932,
-          "lakebed_max_m": 107.378,
-          "max_depth_m": 3.522,
-          "mean_depth_m": 2.013,
+          "cell_count": 31,
+          "area_m2": 1984.0,
+          "surface_elevation_m": 92.887,
+          "lakebed_min_m": 88.029,
+          "lakebed_max_m": 92.431,
+          "max_depth_m": 4.858,
+          "mean_depth_m": 2.419,
           "centroid": [
-            119.03,
-            56.94
+            87.65,
+            122.77
           ],
           "source": "closed-basin"
         },
         {
-          "cell_count": 35,
-          "area_m2": 2240.0,
-          "surface_elevation_m": 89.183,
-          "lakebed_min_m": 84.172,
-          "lakebed_max_m": 89.071,
-          "max_depth_m": 5.011,
-          "mean_depth_m": 3.14,
+          "cell_count": 29,
+          "area_m2": 1856.0,
+          "surface_elevation_m": 129.472,
+          "lakebed_min_m": 125.712,
+          "lakebed_max_m": 129.127,
+          "max_depth_m": 3.76,
+          "mean_depth_m": 2.265,
           "centroid": [
-            19.23,
-            68.74
-          ],
-          "source": "closed-basin"
-        },
-        {
-          "cell_count": 33,
-          "area_m2": 2112.0,
-          "surface_elevation_m": 73.885,
-          "lakebed_min_m": 70.564,
-          "lakebed_max_m": 73.78,
-          "max_depth_m": 3.321,
-          "mean_depth_m": 1.56,
-          "centroid": [
-            34.18,
-            102.73
+            39.59,
+            11.38
           ],
           "source": "closed-basin"
         }
@@ -241,193 +228,315 @@
       "rivers": [
         {
           "source_cell": [
-            16,
-            119
+            43,
+            105
+          ],
+          "length_m": 232.0,
+          "mean_width_m": 6.53,
+          "mean_depth_m": 0.54,
+          "max_depth_m": 1.13,
+          "bank_height_m": 0.32,
+          "max_accumulation": 1104,
+          "cell_count": 29
+        },
+        {
+          "source_cell": [
+            74,
+            23
           ],
           "length_m": 184.0,
-          "mean_width_m": 6.31,
-          "max_accumulation": 475,
+          "mean_width_m": 7.12,
+          "mean_depth_m": 0.72,
+          "max_depth_m": 1.19,
+          "bank_height_m": 0.35,
+          "max_accumulation": 1143,
           "cell_count": 23
         },
         {
           "source_cell": [
+            46,
+            26
+          ],
+          "length_m": 160.0,
+          "mean_width_m": 5.96,
+          "mean_depth_m": 0.6,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.3,
+          "max_accumulation": 285,
+          "cell_count": 20
+        },
+        {
+          "source_cell": [
+            34,
+            91
+          ],
+          "length_m": 160.0,
+          "mean_width_m": 6.4,
+          "mean_depth_m": 0.76,
+          "max_depth_m": 1.07,
+          "bank_height_m": 0.32,
+          "max_accumulation": 571,
+          "cell_count": 20
+        },
+        {
+          "source_cell": [
+            93,
+            44
+          ],
+          "length_m": 144.0,
+          "mean_width_m": 7.5,
+          "mean_depth_m": 0.69,
+          "max_depth_m": 0.99,
+          "bank_height_m": 0.36,
+          "max_accumulation": 1411,
+          "cell_count": 18
+        },
+        {
+          "source_cell": [
+            103,
+            84
+          ],
+          "length_m": 120.0,
+          "mean_width_m": 7.53,
+          "mean_depth_m": 0.7,
+          "max_depth_m": 1.09,
+          "bank_height_m": 0.37,
+          "max_accumulation": 1406,
+          "cell_count": 15
+        },
+        {
+          "source_cell": [
+            15,
+            100
+          ],
+          "length_m": 120.0,
+          "mean_width_m": 6.07,
+          "mean_depth_m": 0.61,
+          "max_depth_m": 1.02,
+          "bank_height_m": 0.3,
+          "max_accumulation": 408,
+          "cell_count": 15
+        },
+        {
+          "source_cell": [
+            102,
+            114
+          ],
+          "length_m": 120.0,
+          "mean_width_m": 6.17,
+          "mean_depth_m": 0.63,
+          "max_depth_m": 1.16,
+          "bank_height_m": 0.31,
+          "max_accumulation": 951,
+          "cell_count": 15
+        },
+        {
+          "source_cell": [
             33,
-            118
+            33
           ],
-          "length_m": 80.0,
-          "mean_width_m": 6.45,
-          "max_accumulation": 749,
-          "cell_count": 10
+          "length_m": 104.0,
+          "mean_width_m": 5.9,
+          "mean_depth_m": 0.54,
+          "max_depth_m": 1.0,
+          "bank_height_m": 0.29,
+          "max_accumulation": 243,
+          "cell_count": 13
         },
         {
           "source_cell": [
-            56,
-            13
+            12,
+            54
           ],
-          "length_m": 72.0,
-          "mean_width_m": 12.42,
-          "max_accumulation": 12409,
-          "cell_count": 9
+          "length_m": 104.0,
+          "mean_width_m": 12.49,
+          "mean_depth_m": 1.33,
+          "max_depth_m": 1.96,
+          "bank_height_m": 0.59,
+          "max_accumulation": 11888,
+          "cell_count": 13
         },
         {
           "source_cell": [
-            23,
-            65
+            93,
+            123
           ],
-          "length_m": 56.0,
-          "mean_width_m": 6.42,
-          "max_accumulation": 581,
-          "cell_count": 7
+          "length_m": 96.0,
+          "mean_width_m": 6.38,
+          "mean_depth_m": 0.73,
+          "max_depth_m": 1.06,
+          "bank_height_m": 0.31,
+          "max_accumulation": 449,
+          "cell_count": 12
         },
         {
           "source_cell": [
-            37,
-            99
+            122,
+            79
           ],
-          "length_m": 56.0,
-          "mean_width_m": 7.33,
-          "max_accumulation": 1331,
-          "cell_count": 7
-        },
-        {
-          "source_cell": [
-            56,
-            5
-          ],
-          "length_m": 48.0,
-          "mean_width_m": 11.39,
-          "max_accumulation": 12818,
-          "cell_count": 6
-        },
-        {
-          "source_cell": [
-            118,
-            16
-          ],
-          "length_m": 48.0,
-          "mean_width_m": 5.67,
-          "max_accumulation": 130,
-          "cell_count": 6
-        },
-        {
-          "source_cell": [
-            36,
-            19
-          ],
-          "length_m": 48.0,
-          "mean_width_m": 5.7,
-          "max_accumulation": 136,
-          "cell_count": 6
-        },
-        {
-          "source_cell": [
-            8,
-            42
-          ],
-          "length_m": 48.0,
-          "mean_width_m": 5.74,
-          "max_accumulation": 157,
-          "cell_count": 6
-        },
-        {
-          "source_cell": [
-            50,
-            6
-          ],
-          "length_m": 40.0,
-          "mean_width_m": 5.88,
-          "max_accumulation": 214,
-          "cell_count": 5
+          "length_m": 88.0,
+          "mean_width_m": 5.93,
+          "mean_depth_m": 0.81,
+          "max_depth_m": 1.0,
+          "bank_height_m": 0.29,
+          "max_accumulation": 231,
+          "cell_count": 11
         },
         {
           "source_cell": [
             4,
-            53
+            21
+          ],
+          "length_m": 80.0,
+          "mean_width_m": 6.34,
+          "mean_depth_m": 0.56,
+          "max_depth_m": 0.58,
+          "bank_height_m": 0.31,
+          "max_accumulation": 461,
+          "cell_count": 10
+        },
+        {
+          "source_cell": [
+            97,
+            54
+          ],
+          "length_m": 80.0,
+          "mean_width_m": 5.7,
+          "mean_depth_m": 0.59,
+          "max_depth_m": 0.96,
+          "bank_height_m": 0.28,
+          "max_accumulation": 133,
+          "cell_count": 10
+        },
+        {
+          "source_cell": [
+            92,
+            65
+          ],
+          "length_m": 80.0,
+          "mean_width_m": 6.06,
+          "mean_depth_m": 0.6,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.3,
+          "max_accumulation": 282,
+          "cell_count": 10
+        },
+        {
+          "source_cell": [
+            72,
+            107
+          ],
+          "length_m": 72.0,
+          "mean_width_m": 5.95,
+          "mean_depth_m": 0.6,
+          "max_depth_m": 0.99,
+          "bank_height_m": 0.3,
+          "max_accumulation": 238,
+          "cell_count": 9
+        },
+        {
+          "source_cell": [
+            11,
+            25
+          ],
+          "length_m": 64.0,
+          "mean_width_m": 6.03,
+          "mean_depth_m": 0.5,
+          "max_depth_m": 0.56,
+          "bank_height_m": 0.3,
+          "max_accumulation": 298,
+          "cell_count": 8
+        },
+        {
+          "source_cell": [
+            91,
+            19
+          ],
+          "length_m": 56.0,
+          "mean_width_m": 5.96,
+          "mean_depth_m": 0.86,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.3,
+          "max_accumulation": 263,
+          "cell_count": 7
+        },
+        {
+          "source_cell": [
+            65,
+            106
+          ],
+          "length_m": 56.0,
+          "mean_width_m": 5.82,
+          "mean_depth_m": 0.52,
+          "max_depth_m": 0.58,
+          "bank_height_m": 0.29,
+          "max_accumulation": 156,
+          "cell_count": 7
+        },
+        {
+          "source_cell": [
+            58,
+            16
           ],
           "length_m": 40.0,
-          "mean_width_m": 5.69,
-          "max_accumulation": 205,
+          "mean_width_m": 5.72,
+          "mean_depth_m": 0.62,
+          "max_depth_m": 0.96,
+          "bank_height_m": 0.29,
+          "max_accumulation": 133,
           "cell_count": 5
         },
         {
           "source_cell": [
             13,
-            4
+            41
           ],
-          "length_m": 32.0,
-          "mean_width_m": 5.65,
-          "max_accumulation": 120,
-          "cell_count": 4
-        },
-        {
-          "source_cell": [
-            45,
-            9
-          ],
-          "length_m": 32.0,
-          "mean_width_m": 5.68,
-          "max_accumulation": 129,
-          "cell_count": 4
+          "length_m": 40.0,
+          "mean_width_m": 5.71,
+          "mean_depth_m": 0.61,
+          "max_depth_m": 0.96,
+          "bank_height_m": 0.29,
+          "max_accumulation": 135,
+          "cell_count": 5
         },
         {
           "source_cell": [
             14,
-            10
+            47
           ],
-          "length_m": 32.0,
-          "mean_width_m": 5.9,
-          "max_accumulation": 225,
-          "cell_count": 4
+          "length_m": 40.0,
+          "mean_width_m": 5.93,
+          "mean_depth_m": 0.63,
+          "max_depth_m": 0.91,
+          "bank_height_m": 0.29,
+          "max_accumulation": 214,
+          "cell_count": 5
+        },
+        {
+          "source_cell": [
+            24,
+            64
+          ],
+          "length_m": 40.0,
+          "mean_width_m": 6.0,
+          "mean_depth_m": 0.55,
+          "max_depth_m": 0.58,
+          "bank_height_m": 0.3,
+          "max_accumulation": 234,
+          "cell_count": 5
         },
         {
           "source_cell": [
             37,
-            79
+            106
           ],
-          "length_m": 32.0,
-          "mean_width_m": 6.05,
-          "max_accumulation": 272,
-          "cell_count": 4
-        },
-        {
-          "source_cell": [
-            3,
-            33
-          ],
-          "length_m": 24.0,
-          "mean_width_m": 5.74,
-          "max_accumulation": 139,
-          "cell_count": 3
-        },
-        {
-          "source_cell": [
-            11,
-            93
-          ],
-          "length_m": 24.0,
-          "mean_width_m": 5.73,
-          "max_accumulation": 148,
-          "cell_count": 3
-        },
-        {
-          "source_cell": [
-            54,
-            105
-          ],
-          "length_m": 24.0,
-          "mean_width_m": 5.65,
-          "max_accumulation": 110,
-          "cell_count": 3
-        },
-        {
-          "source_cell": [
-            29,
-            111
-          ],
-          "length_m": 24.0,
-          "mean_width_m": 5.68,
-          "max_accumulation": 125,
-          "cell_count": 3
+          "length_m": 40.0,
+          "mean_width_m": 5.72,
+          "mean_depth_m": 0.54,
+          "max_depth_m": 0.95,
+          "bank_height_m": 0.29,
+          "max_accumulation": 123,
+          "cell_count": 5
         }
       ]
     },

@@ -12,12 +12,12 @@
   "lakeCrossings": 10,
   "trianglesByLod": [
     32768,
-    20586,
-    18792
+    21074,
+    19442
   ],
-  "mixedTriangles": 20420,
-  "zipBytes": 3837036,
-  "totalMs": 2148,
+  "mixedTriangles": 20942,
+  "zipBytes": 3834041,
+  "totalMs": 2457,
   "freshBabylonScene": true,
   "skirts": false
 }

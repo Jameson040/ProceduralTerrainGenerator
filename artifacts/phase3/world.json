@@ -2,7 +2,7 @@
   "kind": "terrain-world",
   "version": "1.0.0",
   "world": {
-    "id": "world-42-129x129-da29ed59",
+    "id": "world-42-129x129-17aa9092",
     "source_shape": [
       129,
       129
@@ -68,7 +68,7 @@
       "settings_version": 3
     },
     "metadata": {
-      "generator_version": "0.4.0",
+      "generator_version": "0.5.0",
       "settings_version": 3,
       "seed": 42,
       "grid": [
@@ -78,12 +78,12 @@
       "cell_size": 8,
       "min_height": 31.25922966003418,
       "max_height": 169.69125366210938,
-      "generation_time_ms": 257.49,
-      "water_cells": 3946,
+      "generation_time_ms": 343.91,
+      "water_cells": 3174,
       "source": "browser",
       "lake_cells": 2735,
-      "river_cells": 1211,
-      "river_count": 23,
+      "river_cells": 439,
+      "river_count": 24,
       "lake_count": 8,
       "watershed_count": 38,
       "sink_count": 42,
@@ -91,23 +91,24 @@
       "erosion_quality": 1,
       "hydraulic_droplets": 2663,
       "thermal_iterations": 3,
-      "erosion_mean_abs_m": 1.1882,
-      "erosion_max_cut_m": 21.7331,
+      "erosion_mean_abs_m": 1.0947,
+      "erosion_max_cut_m": 27.9528,
       "erosion_max_fill_m": 11.3487,
-      "river_carved_volume_m3": 330124.96,
+      "river_carved_volume_m3": 202391.39,
+      "river_bed_cells": 1207,
       "timing_ms": {
-        "terrain": 124.69,
-        "erosion": 53.38,
-        "drainage": 44.13,
-        "lakes_rivers": 27.84,
-        "water": 7.46
+        "terrain": 195.95,
+        "erosion": 47.15,
+        "drainage": 55.44,
+        "lakes_rivers": 39.28,
+        "water": 6.09
       },
       "lakebed_min": 31.259,
       "lakebed_max": 129.312,
-      "lakebed_mean": 60.554,
+      "lakebed_mean": 58.252,
       "max_water_depth": 27.681,
       "water_level": 36,
-      "underwater_terrain_cells": 3946
+      "underwater_terrain_cells": 3174
     },
     "water_info": {
       "level": 36,
@@ -228,13 +229,16 @@
       "rivers": [
         {
           "source_cell": [
-            27,
-            89
+            44,
+            106
           ],
-          "length_m": 232,
-          "mean_width_m": 8,
-          "max_accumulation": 573,
-          "cell_count": 29
+          "length_m": 216,
+          "mean_width_m": 6.54,
+          "mean_depth_m": 0.52,
+          "max_depth_m": 0.99,
+          "bank_height_m": 0.32,
+          "max_accumulation": 1098,
+          "cell_count": 27
         },
         {
           "source_cell": [
@@ -242,9 +246,38 @@
             25
           ],
           "length_m": 168,
-          "mean_width_m": 8,
+          "mean_width_m": 7.26,
+          "mean_depth_m": 0.68,
+          "max_depth_m": 1.2,
+          "bank_height_m": 0.35,
           "max_accumulation": 1203,
           "cell_count": 21
+        },
+        {
+          "source_cell": [
+            15,
+            49
+          ],
+          "length_m": 160,
+          "mean_width_m": 11.48,
+          "mean_depth_m": 1.22,
+          "max_depth_m": 1.96,
+          "bank_height_m": 0.54,
+          "max_accumulation": 11721,
+          "cell_count": 20
+        },
+        {
+          "source_cell": [
+            36,
+            93
+          ],
+          "length_m": 160,
+          "mean_width_m": 6.48,
+          "mean_depth_m": 0.67,
+          "max_depth_m": 1.05,
+          "bank_height_m": 0.32,
+          "max_accumulation": 573,
+          "cell_count": 20
         },
         {
           "source_cell": [
@@ -252,18 +285,11 @@
             26
           ],
           "length_m": 152,
-          "mean_width_m": 8,
+          "mean_width_m": 5.94,
+          "mean_depth_m": 0.58,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.3,
           "max_accumulation": 256,
-          "cell_count": 19
-        },
-        {
-          "source_cell": [
-            17,
-            54
-          ],
-          "length_m": 152,
-          "mean_width_m": 8,
-          "max_accumulation": 11721,
           "cell_count": 19
         },
         {
@@ -272,7 +298,10 @@
             44
           ],
           "length_m": 144,
-          "mean_width_m": 8,
+          "mean_width_m": 7.44,
+          "mean_depth_m": 0.66,
+          "max_depth_m": 1.22,
+          "bank_height_m": 0.36,
           "max_accumulation": 1324,
           "cell_count": 18
         },
@@ -282,19 +311,38 @@
             84
           ],
           "length_m": 128,
-          "mean_width_m": 8,
+          "mean_width_m": 7.26,
+          "mean_depth_m": 0.68,
+          "max_depth_m": 1.06,
+          "bank_height_m": 0.35,
           "max_accumulation": 1175,
           "cell_count": 16
         },
         {
           "source_cell": [
-            15,
-            100
+            103,
+            113
           ],
           "length_m": 128,
-          "mean_width_m": 8,
-          "max_accumulation": 533,
+          "mean_width_m": 6.19,
+          "mean_depth_m": 0.54,
+          "max_depth_m": 1.16,
+          "bank_height_m": 0.31,
+          "max_accumulation": 953,
           "cell_count": 16
+        },
+        {
+          "source_cell": [
+            12,
+            24
+          ],
+          "length_m": 120,
+          "mean_width_m": 6.2,
+          "mean_depth_m": 0.48,
+          "max_depth_m": 0.58,
+          "bank_height_m": 0.31,
+          "max_accumulation": 499,
+          "cell_count": 15
         },
         {
           "source_cell": [
@@ -302,9 +350,51 @@
             32
           ],
           "length_m": 120,
-          "mean_width_m": 8,
+          "mean_width_m": 5.9,
+          "mean_depth_m": 0.54,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.29,
           "max_accumulation": 263,
           "cell_count": 15
+        },
+        {
+          "source_cell": [
+            15,
+            100
+          ],
+          "length_m": 120,
+          "mean_width_m": 6.07,
+          "mean_depth_m": 0.53,
+          "max_depth_m": 1.04,
+          "bank_height_m": 0.3,
+          "max_accumulation": 371,
+          "cell_count": 15
+        },
+        {
+          "source_cell": [
+            19,
+            68
+          ],
+          "length_m": 96,
+          "mean_width_m": 5.96,
+          "mean_depth_m": 0.61,
+          "max_depth_m": 0.96,
+          "bank_height_m": 0.3,
+          "max_accumulation": 237,
+          "cell_count": 12
+        },
+        {
+          "source_cell": [
+            93,
+            123
+          ],
+          "length_m": 96,
+          "mean_width_m": 6.39,
+          "mean_depth_m": 0.67,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.32,
+          "max_accumulation": 451,
+          "cell_count": 12
         },
         {
           "source_cell": [
@@ -312,7 +402,10 @@
             65
           ],
           "length_m": 88,
-          "mean_width_m": 8,
+          "mean_width_m": 6.12,
+          "mean_depth_m": 0.57,
+          "max_depth_m": 1,
+          "bank_height_m": 0.3,
           "max_accumulation": 336,
           "cell_count": 11
         },
@@ -322,8 +415,24 @@
             107
           ],
           "length_m": 72,
-          "mean_width_m": 8,
+          "mean_width_m": 5.96,
+          "mean_depth_m": 0.5,
+          "max_depth_m": 0.88,
+          "bank_height_m": 0.3,
           "max_accumulation": 241,
+          "cell_count": 9
+        },
+        {
+          "source_cell": [
+            0,
+            112
+          ],
+          "length_m": 72,
+          "mean_width_m": 5.94,
+          "mean_depth_m": 0.6,
+          "max_depth_m": 1.03,
+          "bank_height_m": 0.3,
+          "max_accumulation": 335,
           "cell_count": 9
         },
         {
@@ -332,7 +441,10 @@
             91
           ],
           "length_m": 56,
-          "mean_width_m": 8,
+          "mean_width_m": 5.76,
+          "mean_depth_m": 0.49,
+          "max_depth_m": 0.53,
+          "bank_height_m": 0.29,
           "max_accumulation": 149,
           "cell_count": 7
         },
@@ -342,7 +454,10 @@
             11
           ],
           "length_m": 48,
-          "mean_width_m": 8,
+          "mean_width_m": 5.76,
+          "mean_depth_m": 0.54,
+          "max_depth_m": 0.56,
+          "bank_height_m": 0.29,
           "max_accumulation": 160,
           "cell_count": 6
         },
@@ -352,7 +467,10 @@
             16
           ],
           "length_m": 48,
-          "mean_width_m": 8,
+          "mean_width_m": 5.76,
+          "mean_depth_m": 0.6,
+          "max_depth_m": 0.97,
+          "bank_height_m": 0.29,
           "max_accumulation": 148,
           "cell_count": 6
         },
@@ -362,9 +480,51 @@
             88
           ],
           "length_m": 48,
-          "mean_width_m": 8,
+          "mean_width_m": 5.79,
+          "mean_depth_m": 0.67,
+          "max_depth_m": 0.94,
+          "bank_height_m": 0.29,
           "max_accumulation": 156,
           "cell_count": 6
+        },
+        {
+          "source_cell": [
+            56,
+            111
+          ],
+          "length_m": 48,
+          "mean_width_m": 5.92,
+          "mean_depth_m": 0.33,
+          "max_depth_m": 0.68,
+          "bank_height_m": 0.29,
+          "max_accumulation": 191,
+          "cell_count": 6
+        },
+        {
+          "source_cell": [
+            35,
+            123
+          ],
+          "length_m": 48,
+          "mean_width_m": 5.81,
+          "mean_depth_m": 0.93,
+          "max_depth_m": 1.01,
+          "bank_height_m": 0.29,
+          "max_accumulation": 260,
+          "cell_count": 6
+        },
+        {
+          "source_cell": [
+            0,
+            13
+          ],
+          "length_m": 40,
+          "mean_width_m": 5.9,
+          "mean_depth_m": 0.64,
+          "max_depth_m": 1.1,
+          "bank_height_m": 0.29,
+          "max_accumulation": 646,
+          "cell_count": 5
         },
         {
           "source_cell": [
@@ -372,89 +532,12 @@
             43
           ],
           "length_m": 40,
-          "mean_width_m": 8,
+          "mean_width_m": 5.79,
+          "mean_depth_m": 0.68,
+          "max_depth_m": 0.97,
+          "bank_height_m": 0.29,
           "max_accumulation": 164,
           "cell_count": 5
-        },
-        {
-          "source_cell": [
-            96,
-            56
-          ],
-          "length_m": 40,
-          "mean_width_m": 8,
-          "max_accumulation": 127,
-          "cell_count": 5
-        },
-        {
-          "source_cell": [
-            107,
-            62
-          ],
-          "length_m": 40,
-          "mean_width_m": 8,
-          "max_accumulation": 229,
-          "cell_count": 5
-        },
-        {
-          "source_cell": [
-            36,
-            106
-          ],
-          "length_m": 40,
-          "mean_width_m": 8,
-          "max_accumulation": 121,
-          "cell_count": 5
-        },
-        {
-          "source_cell": [
-            48,
-            115
-          ],
-          "length_m": 40,
-          "mean_width_m": 8,
-          "max_accumulation": 176,
-          "cell_count": 5
-        },
-        {
-          "source_cell": [
-            38,
-            2
-          ],
-          "length_m": 32,
-          "mean_width_m": 8,
-          "max_accumulation": 385,
-          "cell_count": 4
-        },
-        {
-          "source_cell": [
-            53,
-            85
-          ],
-          "length_m": 32,
-          "mean_width_m": 8,
-          "max_accumulation": 120,
-          "cell_count": 4
-        },
-        {
-          "source_cell": [
-            92,
-            85
-          ],
-          "length_m": 32,
-          "mean_width_m": 8,
-          "max_accumulation": 130,
-          "cell_count": 4
-        },
-        {
-          "source_cell": [
-            86,
-            115
-          ],
-          "length_m": 32,
-          "mean_width_m": 8,
-          "max_accumulation": 138,
-          "cell_count": 4
         }
       ]
     },
