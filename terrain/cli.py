@@ -50,6 +50,8 @@ def main(argv=None):
     p.add_argument("--chunk-depth", type=float, default=256.0)
     p.add_argument("--cross-section", action="store_true",
                    help="print ASCII cross-section through the largest lake + continuity report")
+    p.add_argument("--river-sections", action="store_true",
+                   help="print perpendicular cross-sections through several rivers and the riverbed report")
     p.add_argument("--out", default="out")
     a = p.parse_args(argv)
 
@@ -91,6 +93,15 @@ def main(argv=None):
             print(f"  transect.{k}: {v}")
         for k, v in export_continuity_check(t).items():
             print(f"  export.{k}: {v}")
+    if a.river_sections:
+        from .debug import render_river_sections, riverbed_report
+        print()
+        print(render_river_sections(t, 5))
+        report = riverbed_report(t)
+        for k, v in report.items():
+            if k == "section_list":
+                continue
+            print(f"  riverbed.{k}: {v}")
     print(f"Output written to {a.out}/")
 
 

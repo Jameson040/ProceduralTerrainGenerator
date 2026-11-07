@@ -45,6 +45,21 @@ test("sixteen independent chunks load into a new WebGL scene with mixed LOD and 
   await page.screenshot({ path: "artifacts/phase3/underwater-ground.png" });
   await page.getByRole("button", { name: "Water", exact: true }).click();
 
+  // Riverbed correction: water is separate geometry inside a carved channel.
+  const report = page.getByTestId("riverbed-report");
+  await expect(report).toContainText("Terrain is incised under every river");
+  await expect(report).toHaveAttribute("data-spill-edges", "0");
+  expect(Number(await report.getAttribute("data-carved-cells"))).toBeGreaterThan(0);
+  for (let i = 0; i < 3; i++) {
+    const section = page.getByTestId(`river-section-${i}`);
+    await expect(section).toHaveAttribute("data-enclosed", "1");
+    await expect(section).toHaveAttribute("data-bed-below-surface", "1");
+  }
+  await page.screenshot({ path: "artifacts/phase3/river-cross-sections.png" });
+  await page.getByRole("button", { name: "Water", exact: true }).click();
+  await page.screenshot({ path: "artifacts/phase3/dry-riverbed.png" });
+  await page.getByRole("button", { name: "Water", exact: true }).click();
+
   await page.getByLabel("Visible chunks").selectOption("neighbors");
   await expect(canvas).toHaveAttribute("data-chunks", "9");
   await page.getByLabel("Visible chunks").selectOption("selected");

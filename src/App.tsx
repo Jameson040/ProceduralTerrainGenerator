@@ -4,6 +4,7 @@ import { generateTerrain } from "./terrain/generator";
 import { defaultSettings, type TerrainData, type TerrainSettings } from "./terrain/types";
 import { terrainToJSON, terrainFromJSON, heightsToRaw, downloadBlob } from "./terrain/io";
 import CrossSection from "./viewer/CrossSection";
+import RiverSections from "./viewer/RiverSections";
 import { cn } from "./utils/cn";
 import ChunkPanel from "./viewer/ChunkPanel";
 import { balanceLods, createWorld } from "./world/world";
@@ -330,6 +331,14 @@ export default function App() {
             <p className="text-[11px] text-stone-500 leading-relaxed">
               Lakes are bowls in the terrain filled by a separate water surface. The ground stays continuous
               underneath — hide Water in the top bar to walk the lakebed visually.
+            </p>
+          </Section>
+
+          <Section title="River cross-sections">
+            <RiverSections terrain={terrain} />
+            <p className="text-[11px] text-stone-500 leading-relaxed">
+              Perpendicular cuts through several rivers. Grey outline is the heightfield, amber dots are
+              incised bed cells, blue is the separate water surface. River water always sits below its banks.
             </p>
           </Section>
 

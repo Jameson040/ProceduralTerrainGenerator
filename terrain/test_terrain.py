@@ -251,6 +251,68 @@ def run():
     assert lakes.mask.any() and lakes.surface[lakes.mask].max() > lakes.level + 0.1
     assert np.all(bowl[lakes.mask] <= lakes.surface[lakes.mask] + 1e-4)
 
+    # --- Riverbed terrain contract ---
+    # Rivers must incise the source heightfield and place water inside the
+    # resulting channel. These checks are the ones the correction had to pass.
+    from terrain.debug import riverbed_report, river_sections, render_river_sections
+    for seed, res in ((42, 128), (99, 96), (7, 160)):
+        cfg = TerrainSettings(seed=seed, resolution=res)
+        rt = generate_terrain(cfg)
+        riverbed = riverbed_report(rt)
+        assert riverbed["has_rivers"], f"no rivers for seed {seed}"
+        assert riverbed["water_spill_edges"] == 0, f"{riverbed['water_spill_edges']} river edges stand above dry ground"
+        assert riverbed["bed_below_water_surface"] and riverbed["positive_water_depth"]
+        assert riverbed["water_has_terrain_beneath"] and riverbed["terrain_finite_everywhere"]
+        assert riverbed["surface_min_m"] > riverbed["bed_min_m"], "water surface not above the riverbed"
+        assert riverbed["sections_all_enclosed"], "river cross-section not enclosed by banks"
+        assert riverbed["sections_bed_below_surface"] and riverbed["sections_terrain_above_bed"]
+        assert riverbed["bed_slope_p50"] <= 0.25, f"riverbed too steep: {riverbed['bed_slope_p50']}"
+        assert riverbed["gently_sloped_bed_fraction"] >= 0.95, "riverbed not walkable"
+        assert riverbed["carved_bed_cells"] > riverbed["river_cells"] > 0
+
+        # 1. The carve is in the source heightfield, not only in a rendered mesh.
+        off = generate_terrain(TerrainSettings(**{**cfg.to_dict(), "rivers_enabled": False}))
+        carved = rt.layers["river_bed_mask"].astype(bool)
+        assert carved.any(), "no terrain was incised"
+        assert np.all(rt.heights[carved] < off.heights[carved] - 0.02), "bed not carved into source data"
+        # 2. Rivers only lower terrain: no fill, no floating shelf.
+        assert np.all(rt.heights <= off.heights + 1e-4), "river pass raised terrain"
+        # 3. Lakes keep their beds and masks exactly; erosion stays untouched.
+        np.testing.assert_array_equal(rt.water.lake_mask, off.water.lake_mask)
+        lake = rt.water.lake_mask.astype(bool)
+        np.testing.assert_allclose(rt.heights[lake], off.heights[lake], atol=1e-6)
+        assert np.allclose(rt.layers["hydraulic_delta"], off.layers["hydraulic_delta"])
+        assert np.allclose(rt.layers["thermal_delta"], off.layers["thermal_delta"])
+        # 4. Water is separate geometry above a real bed, with banks above it.
+        river_sel = rt.water.river_mask.astype(bool)
+        assert np.all(rt.water.surface[river_sel] > rt.heights[river_sel]), "water not above its bed"
+        for section in riverbed["section_list"]:
+            assert section["water_enclosed"] and section["terrain_above_bed"]
+            assert section["all_terrain_finite"] and section["wet_cells"] >= 1
+            assert max(section["heights"]) > (section["water_surface"] or 0.0)
+        assert "~" in render_river_sections(rt, 2)
+
+    # 5. River channels continue across chunk boundaries and survive export.
+    from terrain.world import FiniteWorld, load_world
+    boundary_rivers = 0
+    export_terrain = generate_terrain(TerrainSettings(seed=99, resolution=128))
+    chunks_world = FiniteWorld(export_terrain, 256.0, 256.0)
+    river_mask_world = export_terrain.water.river_mask
+    for chunk in chunks_world.chunks:
+        x0, z0, x1, z1 = chunk["rect"]
+        for x in range(x0, x1 + 1):
+            boundary_rivers += int(river_mask_world[z0, x] or river_mask_world[z1, x])
+        for z in range(z0, z1 + 1):
+            boundary_rivers += int(river_mask_world[z, x0] or river_mask_world[z, x1])
+    assert boundary_rivers > 0, "test world has no river crossing a chunk boundary"
+    with tempfile.TemporaryDirectory() as d:
+        chunks_world.export(d)
+        restored = load_world(d)
+        np.testing.assert_array_equal(restored.terrain.heights, export_terrain.heights)
+        np.testing.assert_array_equal(restored.terrain.layers["river_bed_mask"],
+                                      export_terrain.layers["river_bed_mask"])
+        np.testing.assert_array_equal(restored.terrain.water.river_mask, export_terrain.water.river_mask)
+        np.testing.assert_allclose(restored.terrain.water.surface, export_terrain.water.surface, atol=1e-5)
     with tempfile.TemporaryDirectory() as d:
         river_json = os.path.join(d, "river.json")
         export_json(river_terrain, river_json)
