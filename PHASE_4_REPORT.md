@@ -187,6 +187,8 @@ Observed in this sandbox (Single-shot Node runs, seed 42, 129², 16 chunks):
 | Water vertices validated against the wet layer | 5,275 |
 | Complete world ZIP (1.1.0, colours + world UVs + masks) | 4.18 MB (was 3.83 MB at 1.0.0) |
 | Babylon scene: 16 chunks, mixed LOD, shadows | renders in the harness without errors |
+| Headless render sweep (11 Babylon views + 7 Three.js views + 2D map) | 19 views, 0 page errors |
+| Production build (`npm run build`) | 2.59 MB single HTML, 630 kB gzip; `three` is *not* in the bundle |
 
 ## Validation
 
