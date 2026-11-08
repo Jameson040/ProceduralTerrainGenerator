@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "phase": 4,
+  "worldVersion": "1.1.0",
+  "materialFormat": 1,
+  "materials": [
+    "sand",
+    "gravel",
+    "grass",
+    "dry_grass",
+    "soil",
+    "rock",
+    "snow"
+  ],
+  "samples": 16641,
+  "stats": {
+    "samples": 16641,
+    "fractions": {
+      "sand": 0.003146204505339649,
+      "gravel": 0.22567586851113908,
+      "grass": 0.44315234563931566,
+      "dry_grass": 0.22451012917078886,
+      "soil": 0.01186018190385346,
+      "rock": 0.04093531050464869,
+      "snow": 0.050719958976727195
+    },
+    "bands": {
+      "plains": {
+        "sand": 0.003956022380482538,
+        "gravel": 0.2506746301027145,
+        "grass": 0.4590267843673867,
+        "dry_grass": 0.23004094870616362,
+        "soil": 0,
+        "rock": 0.005173340157091769,
+        "snow": 0.05112827336748506
+      },
+      "hills": {
+        "sand": 0.00036672082500125905,
+        "gravel": 0.13856730391220004,
+        "grass": 0.3948008148763758,
+        "dry_grass": 0.2084621039307197,
+        "soil": 0.051140462867861336,
+        "rock": 0.15693150170525674,
+        "snow": 0.049731091537450756
+      },
+      "mountains": {
+        "sand": 0.000005535743324659192,
+        "gravel": 0.20278064109129795,
+        "grass": 0.03406848839143864,
+        "dry_grass": 0.03675660131829834,
+        "soil": 0.13869172799526355,
+        "rock": 0.5619370258771457,
+        "snow": 0.025759979573866495
+      }
+    },
+    "max_neighbour_jump": 0.9391300119459629,
+    "jump_p50": 0.04715430736541748,
+    "jump_p95": 0.44531360268592834,
+    "transition_fraction": 0.1138182948628274,
+    "rock_on_steep": 0.6933702581069049,
+    "grass_on_flat": 0.4590220661769493,
+    "classes": 7
+  },
+  "masksPerChunk": 7623,
+  "chunks": 16,
+  "boundaryVertices": 396,
+  "waterVertices": 5275,
+  "three": {
+    "vertices": 1089,
+    "triangles": 2048,
+    "upFaces": 2048,
+    "downFaces": 0,
+    "worldUv": 1089,
+    "waterSeparate": true,
+    "material": "MeshStandardMaterial"
+  },
+  "legacy": {
+    "chunks": 3,
+    "version": "1.0.0",
+    "zipChunks": 16
+  },
+  "snowLineResponse": {
+    "low": 0.31439040908411536,
+    "high": 0.004506094049696016
+  },
+  "checks": [
+    "deterministic field",
+    "slope/elevation distribution",
+    "gradual transitions",
+    "configurable snow/rock",
+    "non-destructive",
+    "chunk masks + world UVs + colours",
+    "single chunk round trip",
+    "complete world round trip",
+    "LOD independence",
+    "seamless boundaries",
+    "water containment",
+    "three geometry parity",
+    "mask parity across backends",
+    "1.0.0 backward compatibility"
+  ],
+  "totalMs": 4032
+}

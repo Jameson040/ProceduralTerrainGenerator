@@ -16,8 +16,27 @@ import numpy as np
 from .generator import TerrainData, generate_terrain
 from .config import TerrainSettings
 from .water import WaterData
+from dataclasses import dataclass as _dataclass
 
-WORLD_VERSION = "1.0.0"
+
+@_dataclass
+class VisualSettings:
+    """Material rules + water look. Changing them never regenerates terrain."""
+    material: "MaterialSettings" = None
+    water: "WaterVisual" = None
+
+    def __post_init__(self):
+        if self.material is None:
+            self.material = MaterialSettings()
+        if self.water is None:
+            self.water = WaterVisual()
+
+
+from .materials import MaterialSettings, WaterVisual, compute_materials, vertex_colors, water_vertex_colors
+
+# 1.1.0 adds material masks, world-space UVs and vertex colours to every mesh.
+WORLD_VERSION = "1.1.0"
+SUPPORTED_VERSIONS = ("1.0.0", "1.1.0")
 
 
 def global_normals(h, sx, sz):
@@ -59,13 +78,22 @@ class MeshBuffers:
     uvs: np.ndarray
     indices: np.ndarray
     samples: np.ndarray
+    world_uv: np.ndarray
+    colors: np.ndarray
 
     def to_dict(self):
-        return {k: getattr(self, k).ravel().tolist() for k in ("positions", "normals", "uvs", "indices", "samples")}
+        return {
+            "positions": self.positions.ravel().tolist(), "normals": self.normals.ravel().tolist(),
+            "uvs": self.uvs.ravel().tolist(), "indices": self.indices.ravel().tolist(),
+            "samples": self.samples.ravel().tolist(),
+            "uv_world": self.world_uv.ravel().tolist(),
+            "colors": np.round(np.clip(self.colors, 0, 1) * 255).astype(np.uint8).ravel().tolist(),
+            "colors_format": "u8-linear-v1",
+        }
 
 
 class FiniteWorld:
-    def __init__(self, terrain: TerrainData, chunk_width=256.0, chunk_depth=256.0):
+    def __init__(self, terrain: TerrainData, chunk_width=256.0, chunk_depth=256.0, visual=None):
         if not all(math.isfinite(v) and v > 0 for v in (chunk_width, chunk_depth)):
             raise ValueError("Chunk dimensions must be positive and finite")
         # Legacy heightfield exports stored just one water level and a mask.
@@ -76,6 +104,8 @@ class FiniteWorld:
                 np.maximum(surface - terrain.heights, 0).astype(np.float32),
                 old.mask.copy(), np.zeros_like(old.mask), old.lakes, old.rivers))
         self.terrain = terrain
+        self.visual = visual or VisualSettings()
+        self._materials = None
         self.sx, self.sz = terrain.spacing_x or terrain.cell_size, terrain.spacing_z or terrain.cell_size
         w, d = terrain.width, terrain.depth
         cx = max(1, min(w - 1, int(math.floor(chunk_width / self.sx + 0.5))))
@@ -93,7 +123,14 @@ class FiniteWorld:
         if terrain.water is not None:
             m = terrain.water.mask
             self.water_cells = m[:-1, :-1] | m[:-1, 1:] | m[1:, :-1] | m[1:, 1:]
-        self.prefix = np.pad(self.water_cells.astype(np.int64).cumsum(0).cumsum(1), ((1, 0), (1, 0)))
+        # Riverbeds and their banks are incised source geometry: coarse LOD must
+        # not flatten the channel, so the carved footprint is protected as well.
+        self.protected_cells = self.water_cells.copy()
+        bed = terrain.layers.get("river_bed_mask") if terrain.layers else None
+        if bed is not None:
+            b = np.asarray(bed) > 0.5
+            self.protected_cells = self.protected_cells | b[:-1, :-1] | b[:-1, 1:] | b[1:, :-1] | b[1:, 1:]
+        self.prefix = np.pad(self.protected_cells.astype(np.int64).cumsum(0).cumsum(1), ((1, 0), (1, 0)))
         self.chunks = []
         self.meshes = {}
         def cid(x, z):
@@ -106,6 +143,12 @@ class FiniteWorld:
                     "neighbors": {"north": cid(x, z - 1), "east": cid(x + 1, z), "south": cid(x, z + 1), "west": cid(x - 1, z)},
                 })
 
+    @property
+    def materials(self):
+        if self._materials is None:
+            self._materials = compute_materials(self.terrain, self.visual.material, self.normals)
+        return self._materials
+
     def header(self):
         t = self.terrain
         return {
@@ -114,6 +157,7 @@ class FiniteWorld:
             "chunk_grid": [self.columns, self.rows], "chunk_cells": self.chunk_cells,
             "layout": self.layout, "settings": t.settings.to_dict(), "metadata": {**t.metadata, "source": "python"},
             "water_info": {"level": t.water.level, "lakes": t.water.lakes, "rivers": t.water.rivers} if t.water else None,
+            "render": {"material": self.visual.material.to_dict(), "water": self.visual.water.to_dict()},
             "coordinates": "global-x-y-z-metres", "winding": "clockwise-from-above-left-handed-y-up",
             "normals": "global-source-central-differences", "stitching": "pinned-source-boundary-and-conforming-transition-fans-no-skirts",
         }
@@ -129,6 +173,7 @@ class FiniteWorld:
         t = self.terrain
         x0, z0, x1, z1 = chunk["rect"]
         positions, normals, uvs, samples, indices = [], [], [], [], []
+        world_uv = []
         vertex_map = {}
         field = self.water_surface if water else t.heights
         nf = self.water_normals if water else self.normals
@@ -150,6 +195,7 @@ class FiniteWorld:
                 normal /= np.linalg.norm(normal)
             normals.append(normal)
             uvs.append([x / (t.width - 1), z / (t.depth - 1)])
+            world_uv.append([t.origin_x + x * self.sx, t.origin_z + z * self.sz])
             samples.append([x, z])
             return index
         def quad(x, z, r, b):
@@ -198,10 +244,13 @@ class FiniteWorld:
                     center = vert((x + r) / 2, (z + b) / 2)
                     perimeter = [vert(u, v) for u, v in ring]
                     indices.extend([[center, perimeter[k], perimeter[(k + 1) % len(ring)]] for k in range(len(ring))])
+        sample_array = np.asarray(samples, dtype=np.float32).reshape(-1, 2)
+        colors = (water_vertex_colors(t, sample_array, self.visual.water) if water
+                  else vertex_colors(self.materials, sample_array))
         mesh = MeshBuffers(
             np.asarray(positions, dtype=np.float32).reshape(-1, 3), np.asarray(normals, dtype=np.float32).reshape(-1, 3),
             np.asarray(uvs, dtype=np.float32).reshape(-1, 2), np.asarray(indices, dtype=np.uint32).reshape(-1, 3),
-            np.asarray(samples, dtype=np.float32).reshape(-1, 2),
+            sample_array, np.asarray(world_uv, dtype=np.float32).reshape(-1, 2), np.asarray(colors, dtype=np.float32),
         )
         self.meshes[key] = mesh
         return mesh
@@ -224,9 +273,22 @@ class FiniteWorld:
             "source": {"shape": [x1 - x0 + 1, z1 - z0 + 1], "heights": values(t.heights), "normals": values(self.normals),
                        "water_mesh_surface": values(self.water_surface), "water_normals": values(self.water_normals),
                        "water": water, "layers": {k: values(v) for k, v in t.layers.items()}},
+            "materials": self._chunk_materials((x0, z0, x1, z1)),
             "lods": [{"level": l, "interior_stride": 2 ** l, "boundary_stride": 1, "water_refinement": True,
                       "mesh": self.mesh(chunk, l).to_dict()} for l in range(3)],
             "water_mesh": self.mesh(chunk, 0, True).to_dict(),
+        }
+
+    def _chunk_materials(self, rect):
+        """Per-source-sample material masks for one chunk (u8-linear-v1)."""
+        x0, z0, x1, z1 = rect
+        field = self.materials
+        weights = field.weights[z0:z1 + 1, x0:x1 + 1].reshape(-1, len(field.ids))
+        albedo = field.albedo[z0:z1 + 1, x0:x1 + 1].reshape(-1, 3)
+        return {
+            "format": "u8-linear-v1", "version": 1, "ids": list(field.ids),
+            "weights": np.round(np.clip(weights, 0, 1) * 255).astype(np.uint8).ravel().tolist(),
+            "albedo": np.round(np.clip(albedo, 0, 1) * 255).astype(np.uint8).ravel().tolist(),
         }
 
     def export_chunk(self, chunk, path):
@@ -247,8 +309,8 @@ class FiniteWorld:
         return directory / "world.json"
 
 
-def generate_world(settings, chunk_width=256.0, chunk_depth=256.0):
-    return FiniteWorld(generate_terrain(settings), chunk_width, chunk_depth)
+def generate_world(settings, chunk_width=256.0, chunk_depth=256.0, visual=None):
+    return FiniteWorld(generate_terrain(settings), chunk_width, chunk_depth, visual)
 
 
 def balance_lods(chunks, requested):
@@ -268,7 +330,7 @@ def load_world(directory):
     """Reconstruct exported source data; never runs formation or erosion."""
     directory = Path(directory)
     manifest = json.loads((directory / "world.json").read_text())
-    if manifest.get("kind") != "terrain-world" or manifest.get("version") != WORLD_VERSION:
+    if manifest.get("kind") != "terrain-world" or manifest.get("version") not in SUPPORTED_VERSIONS:
         raise ValueError("Unsupported world manifest")
     header = manifest["world"]
     w, d = header["source_shape"]
@@ -287,7 +349,7 @@ def load_world(directory):
                           np.zeros((d, w), dtype=bool), np.zeros((d, w), dtype=bool), info["lakes"], info["rivers"])
     for desc in manifest["chunks"]:
         p = json.loads((directory / desc["file"]).read_text())
-        if p["version"] != WORLD_VERSION or p["world"]["id"] != header["id"]:
+        if p["version"] not in SUPPORTED_VERSIONS or p["world"]["id"] != header["id"]:
             raise ValueError("Chunk belongs to a different world/version")
         packets.append(p)
         x0, z0, x1, z1 = p["chunk"]["rect"]
@@ -318,9 +380,31 @@ def load_world(directory):
     if world.id != header["id"]:
         raise ValueError("Complete-world source fingerprint mismatch")
     world.id, world.normals, world.water_surface, world.water_normals = header["id"], n, ws, wn
+    render = header.get("render") or {}
+    world.visual = VisualSettings(MaterialSettings.from_dict(render.get("material")),
+                                  WaterVisual.from_dict(render.get("water")))
+    world._materials = None
     for p in packets:
         for level, m in [(str(l["level"]), l["mesh"]) for l in p["lods"]] + [("water", p["water_mesh"])]:
+            buffers = {}
+            for k, size in (("positions", 3), ("normals", 3), ("uvs", 2), ("indices", 3), ("samples", 2)):
+                buffers[k] = np.array(m[k], dtype=np.uint32 if k == "indices" else np.float32).reshape(-1, size)
+            # 1.1.0 stores world UVs and vertex colours; 1.0.0 chunks derive them from positions
+            if "uv_world" in m:
+                world_uv = np.array(m["uv_world"], dtype=np.float32).reshape(-1, 2)
+            else:
+                world_uv = buffers["positions"][:, [0, 2]].astype(np.float32)
+            if "colors" in m and m["colors"]:
+                colors = np.asarray(m["colors"], dtype=np.float32).reshape(-1, 4)
+                if m.get("colors_format", "u8-linear-v1") == "u8-linear-v1":
+                    colors = colors / 255.0
+            elif level == "water":
+                colors = water_vertex_colors(t, buffers["samples"], world.visual.water)
+            else:
+                colors = vertex_colors(world.materials, buffers["samples"])
+            if not np.isfinite(world_uv).all() or not np.isfinite(colors).all():
+                raise ValueError("Invalid mesh attachment buffer")
             world.meshes[f"{p['chunk']['id']}:{level}"] = MeshBuffers(
-                *[np.array(m[k], dtype=np.uint32 if k == "indices" else np.float32).reshape(-1, size)
-                  for k, size in (("positions", 3), ("normals", 3), ("uvs", 2), ("indices", 3), ("samples", 2))])
+                buffers["positions"], buffers["normals"], buffers["uvs"], buffers["indices"],
+                buffers["samples"], world_uv, colors)
     return world

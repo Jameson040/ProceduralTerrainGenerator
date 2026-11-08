@@ -50,6 +50,42 @@ class WorldTests(unittest.TestCase):
                         if w.terrain.water.mask[z, x]:
                             self.assertEqual(samples[x, z], w.terrain.heights[z, x])
 
+    def test_lod_and_exports_preserve_the_carved_riverbed(self):
+        """The incised channel is source geometry and must survive every LOD."""
+        w = self.world
+        bed = np.asarray(w.terrain.layers["river_bed_mask"]) > 0.5
+        self.assertTrue(bed.any(), "riverbed data missing from the source world")
+        for c in w.chunks:
+            x0, z0, x1, z1 = c["rect"]
+            for lod in (1, 2):
+                m = w.mesh(c, lod)
+                samples = {(int(x), int(z)): m.positions[i, 1]
+                           for i, (x, z) in enumerate(m.samples) if x == int(x) and z == int(z)}
+                for z in range(z0, z1 + 1):
+                    for x in range(x0, x1 + 1):
+                        if not bed[z, x]:
+                            continue
+                        self.assertIn((x, z), samples, "LOD dropped an incised riverbed sample")
+                        self.assertEqual(samples[x, z], w.terrain.heights[z, x],
+                                         "LOD flattened the riverbed")
+        # Individual chunk files and the complete world keep the channel.
+        with tempfile.TemporaryDirectory() as directory:
+            w.export(directory)
+            chunk_files = sorted((Path(directory) / "chunks").glob("*.json"))
+            self.assertEqual(len(chunk_files), len(w.chunks))
+            packet = json.loads(chunk_files[0].read_text())
+            self.assertIn("river_bed_mask", packet["source"]["layers"])
+            restored = load_world(directory)
+            np.testing.assert_array_equal(restored.terrain.heights, w.terrain.heights)
+            np.testing.assert_array_equal(restored.terrain.layers["river_bed_mask"],
+                                          w.terrain.layers["river_bed_mask"])
+            np.testing.assert_array_equal(restored.terrain.water.river_mask, w.terrain.water.river_mask)
+            for c in w.chunks:
+                for lod in range(3):
+                    original, rebuilt = w.mesh(c, lod), restored.mesh(c, lod)
+                    np.testing.assert_array_equal(original.positions, rebuilt.positions)
+                    np.testing.assert_array_equal(original.indices, rebuilt.indices)
+
     def test_shared_vertices_normals_and_water_all_levels(self):
         w = self.world
         crossings = {"river_mask": 0, "lake_mask": 0}

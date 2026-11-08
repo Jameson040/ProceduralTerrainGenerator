@@ -2,7 +2,7 @@
 
 export const SETTINGS_VERSION = 3;
 export const FORMAT_VERSION = 1;
-export const GENERATOR_VERSION = "0.4.0";
+export const GENERATOR_VERSION = "0.5.0";
 
 export interface TerrainSettings {
   seed: number;
@@ -101,6 +101,12 @@ export interface RiverInfo {
   mean_width_m: number;
   max_accumulation: number;
   cell_count: number;
+  /** Mean carved water depth along the traced course. */
+  mean_depth_m?: number;
+  /** Deepest carved water depth along the traced course. */
+  max_depth_m?: number;
+  /** Mean bank freeboard above the waterline. */
+  bank_height_m?: number;
 }
 
 export interface WaterData {
@@ -124,6 +130,8 @@ export interface TerrainLayers {
   erosion: Float32Array;
   river_mask: Float32Array;
   lake_mask: Float32Array;
+  /** 1 where the source heightfield was incised for a river (bed and banks). */
+  river_bed_mask?: Float32Array;
 }
 
 export interface TerrainMetadata {

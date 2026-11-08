@@ -18,7 +18,7 @@ from .hydrology import d8_drainage, fill_depressions
 from .rivers import RiverNetwork, build_river_network
 from .water import LakeField, assemble_water, detect_lakes
 
-GENERATOR_VERSION = "0.4.0"
+GENERATOR_VERSION = "0.5.0"
 
 
 @dataclass
@@ -264,6 +264,9 @@ def generate_terrain(settings: TerrainSettings) -> TerrainData:
         "thermal_delta": thermal_delta,
         "river_mask": (river_network.mask.astype(np.float32) if river_network else np.zeros_like(heights)),
         "lake_mask": lake_field.mask.astype(np.float32),
+        "river_bed_mask": (river_network.bed_mask.astype(np.float32)
+                           if river_network is not None and river_network.bed_mask is not None
+                           else np.zeros_like(heights)),
     }
 
     dt = time.perf_counter() - t0
@@ -298,6 +301,8 @@ def generate_terrain(settings: TerrainSettings) -> TerrainData:
         "erosion_max_cut_m": round(float(np.max(base_heights - heights)), 4),
         "erosion_max_fill_m": round(float(np.max(heights - base_heights)), 4),
         "river_carved_volume_m3": round(float(river_network.carved_volume), 2) if river_network else 0.0,
+        "river_bed_cells": int(river_network.bed_mask.sum())
+        if river_network is not None and river_network.bed_mask is not None else 0,
     }
     # Submerged-terrain diagnostics: water never removes ground.
     if np.any(water_mask):

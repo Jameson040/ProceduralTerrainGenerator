@@ -12,6 +12,7 @@ import "@babylonjs/core/Lights/Shadows/shadowGeneratorSceneComponent";
 import "@babylonjs/core/Materials/standardMaterial";
 import type { ColorMode } from "./buildMeshes";
 import type { ChunkViewOptions, Lod, WorldData, WorldViewStats } from "../world/types";
+import type { VisualSettings } from "../world/shading";
 import { balanceLods, distanceLods, spacing } from "../world/world";
 import { ChunkScene } from "./chunkAdapter";
 
@@ -20,6 +21,8 @@ export interface ViewerOptions {
   wireframe: boolean;
   showWater: boolean;
   shadows: boolean;
+  /** Material rules + water look; changing them never regenerates terrain. */
+  visual: VisualSettings;
 }
 
 interface Props {
@@ -50,7 +53,7 @@ export default function TerrainViewer({ world, options, chunks, focusToken, onSt
     const sig = JSON.stringify([levels, props.options, props.chunks]);
     if (signature.current === sig) return;
     signature.current = sig;
-    const stats = r.manager.update(props.chunks, levels, props.options);
+    const stats = r.manager.update(props.chunks, levels, { ...props.options, debug: props.chunks.debug });
     r.shadowGen.getLight().shadowEnabled = props.options.shadows;
     props.onStats(stats);
     if (canvasRef.current) {
@@ -70,6 +73,12 @@ export default function TerrainViewer({ world, options, chunks, focusToken, onSt
     scene.fogMode = Scene.FOGMODE_EXP2;
     scene.fogColor = new Color3(0.6, 0.72, 0.88);
     scene.fogDensity = 0.00025;
+    // Filmic tone mapping: snow and water highlights stay readable instead of clipping.
+    const ip = scene.imageProcessingConfiguration;
+    ip.toneMappingEnabled = true;
+    ip.toneMappingType = 1; // ACES
+    ip.exposure = 1.15;
+    ip.contrast = 1.12;
 
     const camera = new ArcRotateCamera("cam", -Math.PI / 3, Math.PI / 3.2, 1500, new Vector3(0, 60, 0), scene);
     camera.attachControl(canvas, true);
@@ -102,10 +111,13 @@ export default function TerrainViewer({ world, options, chunks, focusToken, onSt
       const id = info.pickInfo?.pickedMesh?.metadata?.chunkId;
       if (info.type === PointerEventTypes.POINTERPICK && typeof id === "string") current.current.onSelect(id);
     });
-    let nextCheck = 0;
+    let nextCheck = 0, lastFrame = performance.now();
     engine.runRenderLoop(() => {
+      const now = performance.now(), dt = Math.min(0.1, (now - lastFrame) / 1000);
+      lastFrame = now;
+      refs.current?.manager?.updateVisual(dt);
       scene.render();
-      if (performance.now() > nextCheck) { nextCheck = performance.now() + 250; refresh(); }
+      if (now > nextCheck) { nextCheck = now + 250; refresh(); }
     });
     const onResize = () => engine.resize();
     window.addEventListener("resize", onResize);
@@ -127,7 +139,7 @@ export default function TerrainViewer({ world, options, chunks, focusToken, onSt
     if (!r) return;
     r.manager?.dispose(); r.manager = null; signature.current = ""; previousLods.current = {};
     if (!world) return;
-    r.manager = new ChunkScene(r.scene, world, r.shadowGen);
+    r.manager = new ChunkScene(r.scene, world, r.shadowGen, current.current.options.visual ?? world.visual);
     const t = world.terrain, [sx, sz] = spacing(t);
     const extent = Math.max((t.width - 1) * sx, (t.depth - 1) * sz);
     r.camera.target = new Vector3(t.origin_x + (t.width - 1) * sx / 2, t.settings.height_scale * 0.3, t.origin_z + (t.depth - 1) * sz / 2);

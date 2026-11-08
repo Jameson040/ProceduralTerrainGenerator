@@ -5,3 +5,7 @@ __pycache__/
 *.pyc
 test-results/
 playwright-report/
+.venv/
+
+# Generated render-harness bundles (see tests/browser/shots.mjs)
+tests/browser/*.bundle.js

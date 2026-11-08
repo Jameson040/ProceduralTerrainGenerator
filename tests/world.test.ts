@@ -8,6 +8,7 @@ import { defaultSettings } from "../src/terrain/types";
 import { balanceLods, chunkMesh, createWorld, distanceLods, releaseChunk } from "../src/world/world";
 import { exportWorldZip, extractChunk, importWorldZip, loadChunkFiles, worldFiles, type ChunkFile } from "../src/world/export";
 import { validateSeams } from "../src/world/validate";
+import { auditRiverbeds, riverSections } from "../src/terrain/riverAudit";
 import { ChunkScene } from "../src/viewer/chunkAdapter";
 import type { ChunkDescriptor, IndexedMesh, Lod } from "../src/world/types";
 
@@ -52,6 +53,29 @@ const repeated = generateTerrain(settings);
 assert.deepEqual(terrain.heights, repeated.heights);
 assert.deepEqual(terrain.water, repeated.water);
 const sourceCopy = terrain.heights.slice();
+
+// --- Riverbed terrain contract: water sits in an incised, banked channel ---
+const audit = auditRiverbeds(terrain);
+assert(audit.hasRivers, "expected a river network");
+assert(audit.riverCells > 0 && audit.carvedBedCells > audit.riverCells, "riverbed not carved");
+assert.equal(audit.waterSpillEdges, 0, "river water stands above dry ground");
+assert(audit.bedBelowWaterSurface, "riverbed is not below its water surface");
+assert(audit.positiveWaterDepth, "negative river water depth");
+assert(audit.waterHasTerrainBeneath && audit.terrainFiniteEverywhere, "missing terrain under water");
+assert(audit.sectionsBedBelowSurface && audit.sectionsTerrainAboveBed, "cross-section has no bed/banks");
+assert(audit.sectionsAllEnclosed, "river cross-section is not enclosed by banks");
+assert(audit.bedSlopeMedian <= 0.25, `riverbed too steep: ${audit.bedSlopeMedian}`);
+assert(audit.gentlySlopedBedFraction >= 0.95, "riverbed is not walkable");
+const sections = riverSections(terrain, 3);
+assert(sections.length >= 3, "expected several river cross-sections");
+for (const section of sections) {
+  assert(section.wetCells >= 1 && section.allTerrainFinite);
+  assert(section.bed < (section.waterSurface ?? Infinity), "water not above the bed in section");
+  assert(Math.max(...section.heights) > (section.waterSurface ?? 0), "no terrain above the waterline");
+  for (let i = 0; i < section.heights.length; i++) {
+    if (section.wet[i]) assert(section.heights[i] <= (section.surface[i] ?? -Infinity) + 1e-4, "dry land above water");
+  }
+}
 const levels = distanceLods(world, 64, 64, 180, 440);
 assert.equal(new Set(Object.values(levels)).size, 3);
 assert(Object.values(levels).includes(0) && Object.values(levels).includes(2));
@@ -67,9 +91,11 @@ for (const c of world.chunks) for (const l of [0, 1, 2] as Lod[]) {
     const x = m.samples[i * 2], z = m.samples[i * 2 + 1];
     if (Number.isInteger(x) && Number.isInteger(z)) present.set(z * terrain.width + x, m.positions[i * 3 + 1]);
   }
+  const bed = terrain.layers!.river_bed_mask!;
   for (let z = c.rect[1]; z <= c.rect[3]; z++) for (let x = c.rect[0]; x <= c.rect[2]; x++) {
     const i = z * terrain.width + x;
     if (terrain.water!.mask[i]) assert.equal(present.get(i), terrain.heights[i], "LOD lost underwater ground");
+    if (bed[i] > 0.5) assert.equal(present.get(i), terrain.heights[i], "LOD flattened the carved riverbed");
   }
 }
 assert.equal(counts[0], (terrain.width - 1) * (terrain.depth - 1) * 2);
@@ -102,6 +128,11 @@ assert.deepEqual(loaded.terrain.heights, terrain.heights);
 assert.deepEqual(loaded.normals, world.normals);
 assert.deepEqual(loaded.water_surface, world.water_surface);
 assert.deepEqual(loaded.terrain.water, world.terrain.water);
+assert.deepEqual(loaded.terrain.layers!.river_bed_mask, terrain.layers!.river_bed_mask, "riverbed lost on export");
+for (const c of world.chunks) {
+  const packet = packets.find(p => p.chunk.id === c.id)!;
+  assert.deepEqual(Object.keys(packet.source.layers).includes("river_bed_mask"), true, "chunk file dropped the riverbed layer");
+}
 for (const c of world.chunks) for (const l of [0, 1, 2] as Lod[]) {
   const original = chunkMesh(world, c, l), restored = chunkMesh(loaded, c, l);
   assert.deepEqual(restored, original, "reconstructed geometry differs");

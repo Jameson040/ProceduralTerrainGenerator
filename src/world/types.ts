@@ -1,6 +1,9 @@
 import type { TerrainData } from "../terrain/types";
+import type { VisualSettings } from "../terrain/visual";
 
-export const WORLD_VERSION = "1.0.0";
+/** 1.1.0 adds materials, world-space UVs and vertex colours to every mesh. */
+export const WORLD_VERSION = "1.1.0";
+export const SUPPORTED_WORLD_VERSIONS = ["1.0.0", "1.1.0"];
 export type Lod = 0 | 1 | 2;
 export interface ChunkLayout { chunk_width: number; chunk_depth: number }
 export interface ChunkDescriptor {
@@ -13,7 +16,10 @@ export interface ChunkDescriptor {
 export interface IndexedMesh {
   positions: Float32Array;
   normals: Float32Array;
+  /** Normalised 0..1 world UVs (legacy, kept for interchange). */
   uvs: Float32Array;
+  /** World-space UVs in metres: identical in every chunk, never chunk-local. */
+  world_uv: Float32Array;
   indices: Uint32Array;
   /** Global grid coordinates, including transition-cell centers. */
   samples: Float32Array;
@@ -30,10 +36,17 @@ export interface WorldData {
   water_surface: Float32Array;
   water_normals: Float32Array;
   water_cells: Uint8Array;
+  /** Quads that must keep source-detail topology at every LOD (water + riverbeds). */
+  protected_cells: Uint8Array;
   protected_prefix: Uint32Array;
   meshes: Map<string, IndexedMesh>;
   imported: boolean;
   available: Set<string>;
+  /** Derived material weights (lazy, cached by rule parameters). */
+  materials: import("../terrain/materials").MaterialField | null;
+  materialsKey: string;
+  /** Material + water appearance this world was produced/last exported with. */
+  visual: VisualSettings;
 }
 export interface ChunkViewOptions {
   selected: string;

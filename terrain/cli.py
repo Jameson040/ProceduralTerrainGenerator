@@ -50,6 +50,12 @@ def main(argv=None):
     p.add_argument("--chunk-depth", type=float, default=256.0)
     p.add_argument("--cross-section", action="store_true",
                    help="print ASCII cross-section through the largest lake + continuity report")
+    p.add_argument("--river-sections", action="store_true",
+                   help="print perpendicular cross-sections through several rivers and the riverbed report")
+    p.add_argument("--materials-report", action="store_true",
+                   help="print the material distribution (plains / hills / mountains) and transition metrics")
+    p.add_argument("--snow-line", type=float, default=None, help="normalized elevation where snow settles (0..1)")
+    p.add_argument("--rock-slope", type=float, default=None, help="normalized slope where bare rock starts to win")
     p.add_argument("--out", default="out")
     a = p.parse_args(argv)
 
@@ -71,9 +77,15 @@ def main(argv=None):
     os.makedirs(a.out, exist_ok=True)
     export_json(t, os.path.join(a.out, "terrain.json"))
     export_npy(t, a.out)
+    from .materials import MaterialSettings, compute_materials
+    material_settings = MaterialSettings()
+    if a.snow_line is not None:
+        material_settings.snow_line = a.snow_line
+    if a.rock_slope is not None:
+        material_settings.rock_slope = a.rock_slope
     if a.chunks:
-        from .world import FiniteWorld
-        world = FiniteWorld(t, a.chunk_width, a.chunk_depth)
+        from .world import FiniteWorld, VisualSettings
+        world = FiniteWorld(t, a.chunk_width, a.chunk_depth, VisualSettings(material=material_settings))
         world.export(os.path.join(a.out, "world"))
         print(f"Exported {world.columns} x {world.rows} chunks with shared normals and LOD 0/1/2")
     if a.obj:
@@ -91,6 +103,21 @@ def main(argv=None):
             print(f"  transect.{k}: {v}")
         for k, v in export_continuity_check(t).items():
             print(f"  export.{k}: {v}")
+    if a.river_sections:
+        from .debug import render_river_sections, riverbed_report
+        print()
+        print(render_river_sections(t, 5))
+        report = riverbed_report(t)
+        for k, v in report.items():
+            if k == "section_list":
+                continue
+            print(f"  riverbed.{k}: {v}")
+    if a.materials_report:
+        from .materials import render_material_report
+        print()
+        print(render_material_report(t, material_settings))
+        field = compute_materials(t, material_settings)
+        print(f"  materials.albedo_mean: {[round(float(v), 3) for v in field.albedo.mean(axis=0)]}")
     print(f"Output written to {a.out}/")
 
 
